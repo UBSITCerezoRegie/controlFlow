@@ -11,7 +11,7 @@ $barangays = BarangayHelper::getAll();
   <h3 class="mb-4">Add Contact</h3>
 
   <div class="card shadow-sm p-4">
-    <form method="POST" action="/WEBSYS_FINAL_PROJECT/public/?route=contact/add">
+    <form method="POST" action="/IMDBSE2/public/?route=contact/add">
 
       <div class="mb-3">
         <label class="form-label">Linked Patient</label>
@@ -63,7 +63,7 @@ $barangays = BarangayHelper::getAll();
         <button class="btn btn-primary">
           <i class="bi bi-check-circle me-1"></i>Add Contact
         </button>
-        <a href="/WEBSYS_FINAL_PROJECT/public/?route=contact/list" class="btn btn-secondary">
+        <a href="/IMDBSE2/public/?route=contact/list" class="btn btn-secondary">
           <i class="bi bi-x me-1"></i>Cancel
         </a>
       </div>

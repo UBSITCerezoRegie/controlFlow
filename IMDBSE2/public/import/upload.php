@@ -15,7 +15,7 @@ include __DIR__.'/../partials/navbar.php';
   </div>
 
   <div class="card shadow-sm p-4">
-    <form method="POST" enctype="multipart/form-data" action="/WEBSYS_FINAL_PROJECT/public/?route=import/upload">
+    <form method="POST" enctype="multipart/form-data" action="/IMDBSE2/public/?route=import/upload">
       <div class="mb-3">
         <label class="form-label">Select CSV File</label>
         <input type="file" name="csv_file" accept=".csv" class="form-control" required>

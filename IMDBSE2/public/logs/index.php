@@ -121,7 +121,7 @@ include __DIR__.'/../partials/navbar.php';
 
   <div class="card shadow-sm mb-4">
     <div class="card-body">
-      <form class="row g-3" method="GET" action="/WEBSYS_FINAL_PROJECT/public/" data-ajax="audit_logs">
+      <form class="row g-3" method="GET" action="/IMDBSE2/public/" data-ajax="audit_logs">
         <input type="hidden" name="route" value="log/index">
 
         <div class="col-sm-2">

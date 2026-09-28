@@ -45,7 +45,7 @@ $refs = ReferralModel::getByPatient($pid);
 
             <td class="text-center">
               <a target="_blank"
-                 href="/WEBSYS_FINAL_PROJECT/public/?route=referral/print&id=<?= $r['referral_id'] ?>"
+                 href="/IMDBSE2/public/?route=referral/print&id=<?= $r['referral_id'] ?>"
                  class="btn btn-sm btn-outline-primary">
                  Open PDF
               </a>

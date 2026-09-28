@@ -10,7 +10,7 @@ require_once __DIR__.'/../partials/navbar.php';
 
       <!-- Add Patient button (aligned vertically with inputs) -->
       <?php if ($_SESSION['user']['role'] === 'super_admin'): ?>
-        <a href="/WEBSYS_FINAL_PROJECT/public/?route=patient/create"
+        <a href="/IMDBSE2/public/?route=patient/create"
           class="btn btn-primary"
           style="height:38px; display:flex; align-items:center;">
           Add Patient
@@ -22,7 +22,7 @@ require_once __DIR__.'/../partials/navbar.php';
       <!-- SEARCH + FILTERS -->
       <form class="d-flex gap-3 align-items-end"
             method="GET"
-            action="/WEBSYS_FINAL_PROJECT/public/"
+            action="/IMDBSE2/public/"
             data-ajax="patients"
             style="max-width: 600px;">
 
@@ -139,7 +139,7 @@ require_once __DIR__.'/../partials/navbar.php';
                 <span class="badge bg-success">Has Account</span>
               <?php else: ?>
                 <?php if ($_SESSION['user']['role'] === 'super_admin'): ?>
-                  <a href="/WEBSYS_FINAL_PROJECT/public/?route=admin/users&patient_id=<?= $p['patient_id'] ?>"
+                  <a href="/IMDBSE2/public/?route=admin/users&patient_id=<?= $p['patient_id'] ?>"
                      class="badge bg-secondary text-decoration-none" style="cursor: pointer;">
                     No Account — Create
                   </a>
@@ -151,9 +151,9 @@ require_once __DIR__.'/../partials/navbar.php';
 
             <td class="text-center">
               <div class="action-buttons d-flex justify-content-center gap-1">
-                <a href="/WEBSYS_FINAL_PROJECT/public/?route=patient/view&id=<?= $p['patient_id'] ?>" class="btn btn-sm btn-outline-primary">View</a>
+                <a href="/IMDBSE2/public/?route=patient/view&id=<?= $p['patient_id'] ?>" class="btn btn-sm btn-outline-primary">View</a>
                 <?php if ($_SESSION['user']['role'] === 'super_admin'): ?>
-                  <a href="/WEBSYS_FINAL_PROJECT/public/?route=patient/delete&id=<?= $p['patient_id'] ?>"
+                  <a href="/IMDBSE2/public/?route=patient/delete&id=<?= $p['patient_id'] ?>"
                      onclick="return confirm('Delete this patient?');"
                      class="btn btn-sm btn-danger">Delete</a>
                 <?php endif; ?>

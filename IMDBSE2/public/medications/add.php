@@ -10,7 +10,7 @@ include __DIR__ . '/../partials/navbar.php';
     </h4>
     <p class="text-muted small">Add one or multiple drugs for the patient's medication regimen</p>
 
-    <form action="/WEBSYS_FINAL_PROJECT/public/?route=medication/add" method="POST" id="medicationForm">
+    <form action="/IMDBSE2/public/?route=medication/add" method="POST" id="medicationForm">
 
       <!-- Patient Selection (Shared) -->
       <div class="mb-3">
@@ -95,7 +95,7 @@ include __DIR__ . '/../partials/navbar.php';
         <button type="submit" class="btn btn-primary">
           <i class="bi bi-check-circle me-1"></i>Add Medication(s)
         </button>
-        <a href="/WEBSYS_FINAL_PROJECT/public/?route=medication/list" class="btn btn-secondary">
+        <a href="/IMDBSE2/public/?route=medication/list" class="btn btn-secondary">
           <i class="bi bi-x me-1"></i>Cancel
         </a>
       </div>

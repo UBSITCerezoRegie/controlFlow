@@ -16,7 +16,7 @@ class UserController {
         $user = UserModel::getById($id);
         if ($user && $user['role'] === 'super_admin') {
             Flash::set('danger','Cannot delete super admin account.');
-            header("Location: /WEBSYS_FINAL_PROJECT/public/?route=admin/users");
+            header("Location: /IMDBSE2/public/?route=admin/users");
             exit;
         }
 
@@ -36,7 +36,7 @@ class UserController {
         Flash::set('success','User deleted.');
         // Redirect based on user role
         $redirectRoute = ($user['role'] === 'health_worker') ? 'user/create_health_worker' : 'admin/users';
-        header("Location: /WEBSYS_FINAL_PROJECT/public/?route=$redirectRoute");
+        header("Location: /IMDBSE2/public/?route=$redirectRoute");
         exit;
     }
 
@@ -45,7 +45,7 @@ class UserController {
 
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             Flash::set('danger', 'Invalid request.');
-            header("Location: /WEBSYS_FINAL_PROJECT/public/?route=admin/users");
+            header("Location: /IMDBSE2/public/?route=admin/users");
             exit;
         }
 
@@ -54,14 +54,14 @@ class UserController {
 
         if (!$patient_id || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
             Flash::set('danger', 'Invalid input. Select patient and enter a valid email.');
-            header("Location: /WEBSYS_FINAL_PROJECT/public/?route=admin/users");
+            header("Location: /IMDBSE2/public/?route=admin/users");
             exit;
         }
 
         // Already exists?
         if (UserModel::emailExists($email)) {
             Flash::set('danger', 'Email already registered.');
-            header("Location: /WEBSYS_FINAL_PROJECT/public/?route=admin/users");
+            header("Location: /IMDBSE2/public/?route=admin/users");
             exit;
         }
 
@@ -96,7 +96,7 @@ class UserController {
             Flash::set('danger', 'Error: '.$e->getMessage());
         }
 
-        header("Location: /WEBSYS_FINAL_PROJECT/public/?route=admin/users");
+        header("Location: /IMDBSE2/public/?route=admin/users");
         exit;
     }
 
@@ -127,11 +127,11 @@ class UserController {
             } catch (Exception $e) {
                 Flash::set('danger', $e->getMessage());
 
-                header("Location: /WEBSYS_FINAL_PROJECT/public/?route=user/create_health_worker");
+                header("Location: /IMDBSE2/public/?route=user/create_health_worker");
                 exit;
             }
 
-            header("Location: /WEBSYS_FINAL_PROJECT/public/?route=user/create_health_worker");
+            header("Location: /IMDBSE2/public/?route=user/create_health_worker");
             exit;
         }
 

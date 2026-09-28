@@ -34,7 +34,7 @@ function getPercentage($count, $total) {
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h3>Super Admin Dashboard</h3>
     <div>
-      <a href="/WEBSYS_FINAL_PROJECT/public/?route=admin/generateReport" class="btn btn-success">
+      <a href="/IMDBSE2/public/?route=admin/generateReport" class="btn btn-success">
         <i class="bi bi-file-earmark-pdf me-2"></i>Generate Report
       </a>
     </div>
@@ -332,15 +332,15 @@ function getPercentage($count, $total) {
       <div class="card shadow-sm p-3">
         <h5>Data Export & Reports</h5>
         <div class="d-flex gap-3">
-          <a href="/WEBSYS_FINAL_PROJECT/public/?route=export/patients_csv"
+          <a href="/IMDBSE2/public/?route=export/patients_csv"
             class="btn btn-outline-primary">
             <i class="bi bi-table me-2"></i>Export Patient Details (CSV)
           </a>
-          <a href="/WEBSYS_FINAL_PROJECT/public/?route=export/patients_pdf"
+          <a href="/IMDBSE2/public/?route=export/patients_pdf"
             class="btn btn-outline-danger">
             <i class="bi bi-file-earmark-pdf me-2"></i>Export Patient Details (PDF)
           </a>
-          <a href="/WEBSYS_FINAL_PROJECT/public/?route=log/index"
+          <a href="/IMDBSE2/public/?route=log/index"
             class="btn btn-outline-secondary">
             <i class="bi bi-journal-text me-2"></i>View Audit Logs
           </a>

@@ -15,7 +15,7 @@ $patients = PatientModel::getAllByBarangay($barangay);
   <div class="card shadow-sm p-4">
     <div class="d-flex justify-content-between mb-3">
       <h5 class="mb-0">Patient List</h5>
-      <a href="/WEBSYS_FINAL_PROJECT/public/patients/add.php" class="btn btn-primary btn-sm">Add Patient</a>
+      <a href="/IMDBSE2/public/patients/add.php" class="btn btn-primary btn-sm">Add Patient</a>
     </div>
 
     <div class="table-responsive">
@@ -40,7 +40,7 @@ $patients = PatientModel::getAllByBarangay($barangay);
             <td><?=htmlspecialchars($p['sex'])?></td>
             <td><?=htmlspecialchars($p['tb_case_number'])?></td>
             <td>
-              <a href="/WEBSYS_FINAL_PROJECT/public/patients/view.php?id=<?=$p['patient_id']?>" class="btn btn-sm btn-outline-primary">View</a>
+              <a href="/IMDBSE2/public/patients/view.php?id=<?=$p['patient_id']?>" class="btn btn-sm btn-outline-primary">View</a>
             </td>
           </tr>
         <?php endforeach; else: ?>

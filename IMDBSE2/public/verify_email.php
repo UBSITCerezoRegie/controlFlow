@@ -13,7 +13,7 @@ include __DIR__.'/partials/navbar.php';
     if (!$token) {
       echo '<div class="alert alert-danger">Invalid token.</div>';
     } else {
-      header('Location: /WEBSYS_FINAL_PROJECT/public/?route=auth/verify&token='.$token);
+      header('Location: /IMDBSE2/public/?route=auth/verify&token='.$token);
       exit;
     }
     ?>

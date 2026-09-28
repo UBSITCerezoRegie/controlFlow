@@ -44,7 +44,7 @@ $patient = $stmt->fetch();
   <div class="card shadow-sm p-4">
     <h5 class="mb-3">Change Password</h5>
 
-    <form method="POST" action="/WEBSYS_FINAL_PROJECT/public/?route=auth/change_password" data-ajax="change_password">
+    <form method="POST" action="/IMDBSE2/public/?route=auth/change_password" data-ajax="change_password">
       <input type="hidden" name="uid" value="<?=$uid?>">
 
       <div class="mb-3">

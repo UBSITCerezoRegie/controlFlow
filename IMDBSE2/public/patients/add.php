@@ -13,7 +13,7 @@ $barangays = BarangayHelper::getAll();
   <h3 class="mb-4">Add Patient</h3>
 
   <div class="card shadow-sm p-4">
-    <form method="POST" action="/WEBSYS_FINAL_PROJECT/public/?route=patient/create">
+    <form method="POST" action="/IMDBSE2/public/?route=patient/create">
 
       <input type="hidden" name="patient_code" value="">
 
@@ -102,7 +102,7 @@ $barangays = BarangayHelper::getAll();
         <button class="btn btn-primary">
           <i class="bi bi-check-circle me-1"></i>Create Patient
         </button>
-        <a href="/WEBSYS_FINAL_PROJECT/public/?route=patient/index" class="btn btn-secondary">
+        <a href="/IMDBSE2/public/?route=patient/index" class="btn btn-secondary">
           <i class="bi bi-x me-1"></i>Cancel
         </a>
       </div>

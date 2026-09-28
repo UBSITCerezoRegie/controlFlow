@@ -31,10 +31,10 @@ $pending = array_merge($unsent, $sentAlerts);
   <h3 class="mb-4">Health Worker Dashboard</h3>
 
   <div class="mb-3">
-    <a href="/WEBSYS_FINAL_PROJECT/public/?route=export/patients_csv" class="btn btn-outline-primary btn-sm">
+    <a href="/IMDBSE2/public/?route=export/patients_csv" class="btn btn-outline-primary btn-sm">
         Export Patient Details (CSV)
     </a>
-    <a href="/WEBSYS_FINAL_PROJECT/public/?route=export/patients_pdf" class="btn btn-outline-danger btn-sm ms-2">
+    <a href="/IMDBSE2/public/?route=export/patients_pdf" class="btn btn-outline-danger btn-sm ms-2">
         <i class="bi bi-file-earmark-pdf me-1"></i>Export Patient Details (PDF)
     </a>
   </div>

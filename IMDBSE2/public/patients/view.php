@@ -12,8 +12,8 @@ AuthMiddleware::requireRole(['super_admin','health_worker']);
   <div class="d-flex justify-content-between align-items-center mb-3">
     <h3>Patient Details</h3>
     <div class="d-flex gap-2">
-      <a href="/WEBSYS_FINAL_PROJECT/public/?route=patient/edit&id=<?=$patient['patient_id']?>" class="btn btn-warning">Edit</a>
-      <a href="/WEBSYS_FINAL_PROJECT/public/?route=patient/index" class="btn btn-secondary">
+      <a href="/IMDBSE2/public/?route=patient/edit&id=<?=$patient['patient_id']?>" class="btn btn-warning">Edit</a>
+      <a href="/IMDBSE2/public/?route=patient/index" class="btn btn-secondary">
         <i class="bi bi-arrow-left me-1"></i>Back
       </a>
     </div>
@@ -95,7 +95,7 @@ AuthMiddleware::requireRole(['super_admin','health_worker']);
               <td><?=htmlspecialchars($r['referral_date'])?></td>
               <td><?=htmlspecialchars($r['referring_unit'])?></td>
               <td>
-                <a href="/WEBSYS_FINAL_PROJECT/public/?route=referral/view&id=<?=$r['referral_id']?>" class="btn btn-sm btn-outline-primary">View</a>
+                <a href="/IMDBSE2/public/?route=referral/view&id=<?=$r['referral_id']?>" class="btn btn-sm btn-outline-primary">View</a>
               </td>
             </tr>
           <?php endforeach; ?>
@@ -133,7 +133,7 @@ AuthMiddleware::requireRole(['super_admin','health_worker']);
               <td><?=$c['status']?></td>
               <td>
                 <?php if ($c['status'] !== 'converted_patient'): ?>
-                  <a href="/WEBSYS_FINAL_PROJECT/public/?route=contact/convert&id=<?=$c['contact_id']?>" class="btn btn-sm btn-outline-warning">Convert</a>
+                  <a href="/IMDBSE2/public/?route=contact/convert&id=<?=$c['contact_id']?>" class="btn btn-sm btn-outline-warning">Convert</a>
                 <?php endif; ?>
               </td>
             </tr>

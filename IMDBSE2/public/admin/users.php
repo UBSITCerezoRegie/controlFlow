@@ -54,7 +54,7 @@ $barangays = BarangayHelper::getAll();
   <!-- Search Boxes -->
   <form class="d-flex justify-content-end mb-3"
         method="GET"
-        action="/WEBSYS_FINAL_PROJECT/public/"
+        action="/IMDBSE2/public/"
         data-ajax="patient_users">
 
       <input type="hidden" name="route" value="admin/users">
@@ -104,7 +104,7 @@ $barangays = BarangayHelper::getAll();
   <div class="card shadow-sm p-4 mb-4">
     <h5 class="mb-3">Create User Account for Patient</h5>
 
-    <form method="POST" class="row g-3" action="/WEBSYS_FINAL_PROJECT/public/?route=user/create_patient_user">
+    <form method="POST" class="row g-3" action="/IMDBSE2/public/?route=user/create_patient_user">
 
       <div class="col-md-6">
         <label class="form-label">Select Patient (Name, Code, Barangay)</label>
@@ -162,7 +162,7 @@ $barangays = BarangayHelper::getAll();
             <td class="text-center"><?= htmlspecialchars($u['patient_code']) ?></td>
             <td class="text-center"><?= htmlspecialchars($u['patient_barangay']) ?></td>
             <td class="text-center">
-              <a href="/WEBSYS_FINAL_PROJECT/public/?route=user/delete_user&id=<?= $u['user_id'] ?>"
+              <a href="/IMDBSE2/public/?route=user/delete_user&id=<?= $u['user_id'] ?>"
                 onclick="return confirm('Delete this user?');"
                 class="btn btn-danger btn-sm">Delete</a>
             </td>

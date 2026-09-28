@@ -20,7 +20,7 @@ if (!empty($medication['patient_id'])) {
 
   <div class="d-flex justify-content-between align-items-center mb-3">
     <h3>Mark Medication Compliance</h3>
-    <a href="/WEBSYS_FINAL_PROJECT/public/?route=medication/compliance" class="btn btn-secondary">← Back to Compliance List</a>
+    <a href="/IMDBSE2/public/?route=medication/compliance" class="btn btn-secondary">← Back to Compliance List</a>
   </div>
 
   <div class="card shadow-sm p-4 mb-4">
@@ -73,7 +73,7 @@ if (!empty($medication['patient_id'])) {
   </div>
 
   <div class="card shadow-sm p-4">
-    <form method="POST" action="/WEBSYS_FINAL_PROJECT/public/?route=medication/mark_compliance&id=<?=$medication['medication_id']?>">
+    <form method="POST" action="/IMDBSE2/public/?route=medication/mark_compliance&id=<?=$medication['medication_id']?>">
       <input type="hidden" name="medication_id" value="<?=$medication['medication_id']?>">
 
       <h5 class="mb-3">Update Compliance Status</h5>
@@ -105,7 +105,7 @@ if (!empty($medication['patient_id'])) {
       </div>
 
       <button type="submit" class="btn btn-success">Update Compliance Status</button>
-      <a href="/WEBSYS_FINAL_PROJECT/public/?route=medication/compliance" class="btn btn-secondary ms-2">Cancel</a>
+      <a href="/IMDBSE2/public/?route=medication/compliance" class="btn btn-secondary ms-2">Cancel</a>
     </form>
   </div>
 </div>

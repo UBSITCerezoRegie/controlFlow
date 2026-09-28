@@ -18,7 +18,7 @@ if (!isset($ref)) {
 
   <div class="card shadow-sm p-4">
     <form method="POST"
-          action="/WEBSYS_FINAL_PROJECT/public/?route=referral/edit&id=<?= $ref['referral_id'] ?>">
+          action="/IMDBSE2/public/?route=referral/edit&id=<?= $ref['referral_id'] ?>">
 
       <!-- PATIENT (READONLY) -->
       <div class="mb-3">
@@ -108,7 +108,7 @@ if (!isset($ref)) {
         <button class="btn btn-primary">
           <i class="bi bi-check-circle me-1"></i>Update Referral
         </button>
-        <a href="/WEBSYS_FINAL_PROJECT/public/?route=referral/view&id=<?= $ref['referral_id'] ?>" class="btn btn-secondary">
+        <a href="/IMDBSE2/public/?route=referral/view&id=<?= $ref['referral_id'] ?>" class="btn btn-secondary">
           <i class="bi bi-x me-1"></i>Cancel
         </a>
       </div>

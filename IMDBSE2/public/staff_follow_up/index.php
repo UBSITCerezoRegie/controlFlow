@@ -8,7 +8,7 @@ AuthMiddleware::requireRole(['super_admin']);
 <div class="container py-4">
   <div class="d-flex justify-content-between align-items-center mb-3">
     <h3>Staff Follow-up Required</h3>
-    <a href="/WEBSYS_FINAL_PROJECT/public/?route=notification/list" class="btn btn-outline-secondary">All Notifications</a>
+    <a href="/IMDBSE2/public/?route=notification/list" class="btn btn-outline-secondary">All Notifications</a>
   </div>
 
   <div class="card shadow-sm p-3">
@@ -31,7 +31,7 @@ AuthMiddleware::requireRole(['super_admin']);
               <td class="text-start"><?= nl2br(htmlspecialchars($n['message'])) ?></td>
               <td class="text-center"><?= htmlspecialchars($n['created_at']) ?></td>
               <td class="text-center">
-                <a href="/WEBSYS_FINAL_PROJECT/public/?route=stafffollowup/resolve&id=<?= $n['notification_id'] ?>" class="btn btn-sm btn-success"
+                <a href="/IMDBSE2/public/?route=stafffollowup/resolve&id=<?= $n['notification_id'] ?>" class="btn btn-sm btn-success"
                    onclick="return confirm('Mark this follow-up as handled?');">Resolve</a>
               </td>
             </tr>

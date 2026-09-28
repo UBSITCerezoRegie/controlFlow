@@ -10,7 +10,7 @@ include __DIR__ . '/partials/navbar.php';
   <div class="card shadow-sm p-4" style="max-width:400px; width:100%;">
     <h4 class="mb-3 text-center">TB-MAS Login</h4>
 
-    <form method="POST" action="/WEBSYS_FINAL_PROJECT/public/?route=auth/login">
+    <form method="POST" action="/IMDBSE2/public/?route=auth/login">
       <div class="mb-3">
         <label class="form-label">Email</label>
         <input type="email" name="email" class="form-control" required>

@@ -18,14 +18,14 @@ class ImportController {
 
             if ($file['error'] !== UPLOAD_ERR_OK) {
                 Flash::set('danger', 'Upload error');
-                header("Location: /WEBSYS_FINAL_PROJECT/public/?route=import/upload");
+                header("Location: /IMDBSE2/public/?route=import/upload");
                 exit;
             }
 
             $handle = fopen($file['tmp_name'], 'r');
             if (!$handle) {
                 Flash::set('danger', 'Could not read file');
-                header("Location: /WEBSYS_FINAL_PROJECT/public/?route=import/upload");
+                header("Location: /IMDBSE2/public/?route=import/upload");
                 exit;
             }
 

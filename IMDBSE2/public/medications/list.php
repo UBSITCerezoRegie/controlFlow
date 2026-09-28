@@ -10,7 +10,7 @@ require_once __DIR__.'/../partials/navbar.php';
     <!-- Action Buttons -->
     <div class="d-flex gap-2">
       <?php if ($_SESSION['user']['role'] !== 'patient'): ?>
-        <a href="/WEBSYS_FINAL_PROJECT/public/?route=medication/add"
+        <a href="/IMDBSE2/public/?route=medication/add"
            class="btn btn-primary"
            style="height: 38px; display: flex; align-items: center;">
           Add Medication
@@ -18,7 +18,7 @@ require_once __DIR__.'/../partials/navbar.php';
       <?php endif; ?>
 
       <!-- Go to Compliance Tracking Button -->
-      <a href="/WEBSYS_FINAL_PROJECT/public/?route=medication/compliance"
+      <a href="/IMDBSE2/public/?route=medication/compliance"
          class="btn btn-info btn-sm"
          style="height: 38px; display: flex; align-items: center;">
         <i class="bi bi-check-circle me-1"></i>Compliance Tracking
@@ -28,7 +28,7 @@ require_once __DIR__.'/../partials/navbar.php';
     <!-- SEARCH + FILTERS -->
     <form class="d-flex gap-3 align-items-end"
           method="GET"
-          action="/WEBSYS_FINAL_PROJECT/public/"
+          action="/IMDBSE2/public/"
           data-ajax="medications"
           style="max-width: 600px;">
 
@@ -93,8 +93,8 @@ require_once __DIR__.'/../partials/navbar.php';
                 <td class="text-center"><?= htmlspecialchars($m['created_at'] ?? '-') ?></td>
                 <?php if ($_SESSION['user']['role'] !== 'patient'): ?>
                 <td class="text-center">
-                  <a class="btn btn-sm btn-warning" href="/WEBSYS_FINAL_PROJECT/public/?route=medication/edit&id=<?= $m['medication_id'] ?? $m['id'] ?>">Edit</a>
-                  <a class="btn btn-sm btn-danger" href="/WEBSYS_FINAL_PROJECT/public/?route=medication/delete&id=<?= $m['medication_id'] ?? $m['id'] ?>"
+                  <a class="btn btn-sm btn-warning" href="/IMDBSE2/public/?route=medication/edit&id=<?= $m['medication_id'] ?? $m['id'] ?>">Edit</a>
+                  <a class="btn btn-sm btn-danger" href="/IMDBSE2/public/?route=medication/delete&id=<?= $m['medication_id'] ?? $m['id'] ?>"
                      onclick="return confirm('Delete medication?');">Delete</a>
                 </td>
                 <?php endif; ?>

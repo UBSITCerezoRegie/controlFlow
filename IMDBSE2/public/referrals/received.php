@@ -37,7 +37,7 @@ require_once __DIR__.'/../partials/navbar.php';
 
               <td class="text-center">
                 <a class="btn btn-sm btn-primary"
-                   href="/WEBSYS_FINAL_PROJECT/public/?route=referral/view&id=<?= $r['referral_id'] ?>">View</a>
+                   href="/IMDBSE2/public/?route=referral/view&id=<?= $r['referral_id'] ?>">View</a>
               </td>
             </tr>
           <?php endforeach; else: ?>

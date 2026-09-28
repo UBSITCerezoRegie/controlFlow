@@ -24,7 +24,7 @@ $barangays = BarangayHelper::getAll();
       <?php endif; ?>
     </div>
 
-    <form method="POST" action="/WEBSYS_FINAL_PROJECT/public/?route=contact/convert&id=<?= $contact['contact_id'] ?>">
+    <form method="POST" action="/IMDBSE2/public/?route=contact/convert&id=<?= $contact['contact_id'] ?>">
       <h5>Patient Details</h5>
 
       <div class="row">
@@ -106,7 +106,7 @@ $barangays = BarangayHelper::getAll();
 
       <div class="d-flex gap-2">
         <button type="submit" class="btn btn-success">Convert to Patient</button>
-        <a href="/WEBSYS_FINAL_PROJECT/public/?route=contact/list" class="btn btn-secondary">Cancel</a>
+        <a href="/IMDBSE2/public/?route=contact/list" class="btn btn-secondary">Cancel</a>
       </div>
     </form>
   </div>

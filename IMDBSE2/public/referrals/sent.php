@@ -6,7 +6,7 @@ require_once __DIR__.'/../partials/navbar.php';
 <div class="container py-4">
   <h3 class="mb-4">Sent Referrals</h3>
 
-  <a href="/WEBSYS_FINAL_PROJECT/public/?route=referral/create" class="btn btn-success mb-3">
+  <a href="/IMDBSE2/public/?route=referral/create" class="btn btn-success mb-3">
     + Create Referral
   </a>
 
@@ -41,10 +41,10 @@ require_once __DIR__.'/../partials/navbar.php';
               <td class="text-center"><?= htmlspecialchars($r['referral_date']) ?></td>
               <td class="text-center">
                 <a class="btn btn-sm btn-primary"
-                   href="/WEBSYS_FINAL_PROJECT/public/?route=referral/view&id=<?= $r['referral_id'] ?>">View</a>
+                   href="/IMDBSE2/public/?route=referral/view&id=<?= $r['referral_id'] ?>">View</a>
                 <?php if ($r['referral_status'] !== 'received'): ?>
                     <a class="btn btn-sm btn-warning"
-                      href="/WEBSYS_FINAL_PROJECT/public/?route=referral/edit&id=<?= $r['referral_id'] ?>">Edit</a>
+                      href="/IMDBSE2/public/?route=referral/edit&id=<?= $r['referral_id'] ?>">Edit</a>
                 <?php endif; ?>
               </td>
             </tr>

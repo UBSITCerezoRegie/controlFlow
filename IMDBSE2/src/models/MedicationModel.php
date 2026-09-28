@@ -177,7 +177,7 @@ class MedicationModel {
               'type' => 'staff_follow_up',
               'title' => 'Auto-Detected Missed Medication - Urgent Follow-up Required',
               'message' => "Medication '{$med['drugs']}' (ID: {$med['medication_id']}) has been auto-marked as missed after being overdue for {$overdueGracePeriod} days. Immediate staff intervention needed.",
-              'link' => "/WEBSYS_FINAL_PROJECT/public/?route=patient/view&id=" . $med['patient_id']
+              'link' => "/IMDBSE2/public/?route=patient/view&id=" . $med['patient_id']
           ]);
 
           // Notify health workers individually via email (but use separate type to avoid duplicate follow-up entries)
@@ -187,7 +187,7 @@ class MedicationModel {
                   'type' => 'health_worker_alert', // Separate type to avoid duplicate follow-up entries
                   'title' => 'Medication Follow-up Required in Your Area',
                   'message' => "Patient medication '{$med['drugs']}' (ID: {$med['medication_id']}) has been auto-detected as missed. Please follow up immediately.",
-                  'link' => "/WEBSYS_FINAL_PROJECT/public/?route=patient/view&id=" . $med['patient_id']
+                  'link' => "/IMDBSE2/public/?route=patient/view&id=" . $med['patient_id']
               ]);
           }
 
@@ -197,7 +197,7 @@ class MedicationModel {
               'type' => 'missed_medication_patient_notification',
               'title' => 'Important: Medication Follow-up Required',
               'message' => "Your medication '{$med['drugs']}' has been identified as missed and requires follow-up. Please contact your healthcare provider.",
-              'link' => "/WEBSYS_FINAL_PROJECT/public/?route=patient/notifications"
+              'link' => "/IMDBSE2/public/?route=patient/notifications"
           ]);
       }
 

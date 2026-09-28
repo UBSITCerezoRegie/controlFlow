@@ -9,7 +9,7 @@ require_once __DIR__.'/../partials/navbar.php';
   <div class="d-flex justify-content-between align-items-end mb-3">
 
     <!-- Create New Referral button (aligned + same color as others) -->
-    <a href="/WEBSYS_FINAL_PROJECT/public/?route=referral/create"
+    <a href="/IMDBSE2/public/?route=referral/create"
        class="btn btn-primary"
        style="height: 38px; display: flex; align-items: center;">
        Create New Referral
@@ -17,7 +17,7 @@ require_once __DIR__.'/../partials/navbar.php';
 
     <form class="d-flex gap-3 align-items-end"
           method="GET"
-          action="/WEBSYS_FINAL_PROJECT/public/"
+          action="/IMDBSE2/public/"
           data-ajax="referrals"
           style="max-width: 800px;">
 
@@ -104,8 +104,8 @@ require_once __DIR__.'/../partials/navbar.php';
               </td>
               <td class="text-center"><?= htmlspecialchars($r['referral_date']) ?></td>
               <td class="text-center">
-                <a class="btn btn-sm btn-primary" href="/WEBSYS_FINAL_PROJECT/public/?route=referral/view&id=<?= $r['referral_id'] ?>">View</a>
-                <a class="btn btn-sm btn-danger" href="/WEBSYS_FINAL_PROJECT/public/?route=referral/delete&id=<?= $r['referral_id'] ?>"
+                <a class="btn btn-sm btn-primary" href="/IMDBSE2/public/?route=referral/view&id=<?= $r['referral_id'] ?>">View</a>
+                <a class="btn btn-sm btn-danger" href="/IMDBSE2/public/?route=referral/delete&id=<?= $r['referral_id'] ?>"
                    onclick="return confirm('Delete this referral?');">Delete</a>
               </td>
             </tr>

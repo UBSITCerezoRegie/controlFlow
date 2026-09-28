@@ -28,7 +28,7 @@ include __DIR__.'/../partials/navbar.php';
   </div>
   <?php endif; ?>
 
-  <a href="/WEBSYS_FINAL_PROJECT/public/?route=import/upload" class="btn btn-secondary">Back to Import</a>
+  <a href="/IMDBSE2/public/?route=import/upload" class="btn btn-secondary">Back to Import</a>
 </div>
 
 <?php include __DIR__.'/../partials/footer.php'; ?>

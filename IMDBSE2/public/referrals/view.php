@@ -7,11 +7,11 @@ require_once __DIR__.'/../partials/navbar.php';
   <div class="d-flex justify-content-between align-items-center mb-3">
     <h3>Referral Details</h3>
     <div class="d-flex gap-2">
-      <a href="/WEBSYS_FINAL_PROJECT/public/?route=referral/print&id=<?= $ref['referral_id'] ?>"
+      <a href="/IMDBSE2/public/?route=referral/print&id=<?= $ref['referral_id'] ?>"
          class="btn btn-outline-primary" target="_blank">
         <i class="bi bi-printer me-1"></i>Print PDF
       </a>
-      <a href="/WEBSYS_FINAL_PROJECT/public/?route=referral/index" class="btn btn-secondary">
+      <a href="/IMDBSE2/public/?route=referral/index" class="btn btn-secondary">
         <i class="bi bi-arrow-left me-1"></i>Back
       </a>
     </div>
@@ -57,12 +57,12 @@ require_once __DIR__.'/../partials/navbar.php';
                 $ref['created_by'] == $_SESSION['user']['user_id']
             )
         ): ?>
-            <a href="/WEBSYS_FINAL_PROJECT/public/?route=referral/edit&id=<?= $ref['referral_id'] ?>"
+            <a href="/IMDBSE2/public/?route=referral/edit&id=<?= $ref['referral_id'] ?>"
               class="btn btn-warning">Edit</a>
         <?php endif; ?>
 
         <?php if ($_SESSION['user']['role'] === 'super_admin'): ?>
-          <a href="/WEBSYS_FINAL_PROJECT/public/?route=referral/delete&id=<?= $ref['referral_id'] ?>"
+          <a href="/IMDBSE2/public/?route=referral/delete&id=<?= $ref['referral_id'] ?>"
              class="btn btn-danger" onclick="return confirm('Delete referral?');">Delete</a>
         <?php endif; ?>
 
@@ -72,7 +72,7 @@ require_once __DIR__.'/../partials/navbar.php';
             $ref['referral_status'] !== 'received'
         ): ?>
             <a class="btn btn-success"
-              href="/WEBSYS_FINAL_PROJECT/public/?route=referral/receive&id=<?= $ref['referral_id'] ?>">
+              href="/IMDBSE2/public/?route=referral/receive&id=<?= $ref['referral_id'] ?>">
               Receive Referral
             </a>
         <?php endif; ?>

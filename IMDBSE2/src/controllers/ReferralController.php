@@ -21,7 +21,7 @@ class ReferralController {
     if ($role === 'super_admin') {
         $rows = ReferralModel::getAllFiltered($q, $receiving, $status);
     } else {
-        header("Location: /WEBSYS_FINAL_PROJECT/public/?route=referral/sent");
+        header("Location: /IMDBSE2/public/?route=referral/sent");
         exit;
     }
 
@@ -60,7 +60,7 @@ class ReferralController {
         $patient = PatientModel::getById($data['patient_id']);
         if (!$patient) {
             Flash::set('danger', 'Patient not found.');
-            header("Location: /WEBSYS_FINAL_PROJECT/public/?route=referral/create");
+            header("Location: /IMDBSE2/public/?route=referral/create");
             exit;
         }
 
@@ -83,7 +83,7 @@ class ReferralController {
                 'type' => 'incoming_referral',
                 'title' => 'Incoming Referral',
                 'message' => "Referral {$data['referral_code']} for patient {$patient['patient_code']} has been assigned to your barangay.",
-                'link' => "/WEBSYS_FINAL_PROJECT/public/?route=referral/view&id=$id"
+                'link' => "/IMDBSE2/public/?route=referral/view&id=$id"
             ]);
         }
 
@@ -93,11 +93,11 @@ class ReferralController {
             'referral_created',
             'You have been referred',
             "A referral ({$data['referral_code']}) has been created for you.",
-            "/WEBSYS_FINAL_PROJECT/public/?route=patientdashboard/referrals"
+            "/IMDBSE2/public/?route=patientdashboard/referrals"
         );
 
         Flash::set('success','Referral created.');
-        header("Location: /WEBSYS_FINAL_PROJECT/public/?route=referral/index");
+        header("Location: /IMDBSE2/public/?route=referral/index");
         exit;
     }
 
@@ -117,10 +117,10 @@ class ReferralController {
     AuthMiddleware::requireRole(['super_admin','health_worker','patient']);
     $id = $_GET['id'] ?? null;
 
-    if (!$id) { Flash::set('danger','Missing ID'); header('Location: /WEBSYS_FINAL_PROJECT/public/?route=referral/index'); exit; }
+    if (!$id) { Flash::set('danger','Missing ID'); header('Location: /IMDBSE2/public/?route=referral/index'); exit; }
 
     $ref = ReferralModel::getById($id);
-    if (!$ref) { Flash::set('danger','Referral not found'); header('Location: /WEBSYS_FINAL_PROJECT/public/?route=referral/index'); exit; }
+    if (!$ref) { Flash::set('danger','Referral not found'); header('Location: /IMDBSE2/public/?route=referral/index'); exit; }
 
     include __DIR__ . '/../../public/referrals/view.php';
   }
@@ -129,14 +129,14 @@ class ReferralController {
     AuthMiddleware::requireRole(['super_admin','health_worker']);
     $id = $_GET['id'] ?? null;
 
-    if (!$id) { Flash::set('danger','Missing ID'); header('Location: /WEBSYS_FINAL_PROJECT/public/?route=referral/incoming'); exit; }
+    if (!$id) { Flash::set('danger','Missing ID'); header('Location: /IMDBSE2/public/?route=referral/incoming'); exit; }
 
     $ref = ReferralModel::getById($id);
-    if (!$ref) { Flash::set('danger','Referral not found'); header('Location: /WEBSYS_FINAL_PROJECT/public/?route=referral/incoming'); exit; }
+    if (!$ref) { Flash::set('danger','Referral not found'); header('Location: /IMDBSE2/public/?route=referral/incoming'); exit; }
 
     $userBarangay = $_SESSION['user']['barangay_assigned'] ?? null;
     if ($_SESSION['user']['role'] !== 'super_admin' && $ref['receiving_barangay'] !== $userBarangay) {
-      Flash::set('danger','Not authorized.'); header('Location: /WEBSYS_FINAL_PROJECT/public/?route=referral/incoming'); exit;
+      Flash::set('danger','Not authorized.'); header('Location: /IMDBSE2/public/?route=referral/incoming'); exit;
     }
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -183,7 +183,7 @@ class ReferralController {
           'type' => 'referral_received',
           'title' => 'Referral Received',
           'message' => "Referral {$ref['referral_code']} was marked as received.",
-          'link' => "/WEBSYS_FINAL_PROJECT/public/?route=referral/view&id=$id"
+          'link' => "/IMDBSE2/public/?route=referral/view&id=$id"
         ]);
       }
 
@@ -193,11 +193,11 @@ class ReferralController {
           'referral_received_patient',
           'Your Referral Was Received',
           "Referral {$ref['referral_code']} has been received by {$ref['receiving_barangay']}.",
-          "/WEBSYS_FINAL_PROJECT/public/?route=patientdashboard/referrals"
+          "/IMDBSE2/public/?route=patientdashboard/referrals"
       );
 
       Flash::set('success','Referral marked as received.');
-      header('Location: /WEBSYS_FINAL_PROJECT/public/?route=referral/incoming');
+      header('Location: /IMDBSE2/public/?route=referral/incoming');
       exit;
     }
 
@@ -208,17 +208,17 @@ class ReferralController {
     AuthMiddleware::requireRole(['super_admin','health_worker']);
 
     $id = $_GET['id'] ?? null;
-    if (!$id) { Flash::set('danger','Missing ID'); header('Location: /WEBSYS_FINAL_PROJECT/public/?route=referral/index'); exit; }
+    if (!$id) { Flash::set('danger','Missing ID'); header('Location: /IMDBSE2/public/?route=referral/index'); exit; }
     $ref = ReferralModel::getById($id);
-    if (!$ref) { Flash::set('danger','Referral not found'); header('Location: /WEBSYS_FINAL_PROJECT/public/?route=referral/index'); exit; }
+    if (!$ref) { Flash::set('danger','Referral not found'); header('Location: /IMDBSE2/public/?route=referral/index'); exit; }
     if ($ref['referral_status'] === 'received') {
       Flash::set('danger','Received referrals cannot be edited.');
-      header("Location: /WEBSYS_FINAL_PROJECT/public/?route=referral/view&id=$id");
+      header("Location: /IMDBSE2/public/?route=referral/view&id=$id");
       exit;
     }
     if ($_SESSION['user']['role'] !== 'super_admin' && $ref['created_by'] != $_SESSION['user']['user_id']) {
       Flash::set('danger','Not authorized.');
-      header("Location: /WEBSYS_FINAL_PROJECT/public/?route=referral/view&id=$id");
+      header("Location: /IMDBSE2/public/?route=referral/view&id=$id");
       exit;
     }
 
@@ -227,7 +227,7 @@ class ReferralController {
       $patient = PatientModel::getById($data['patient_id']);
       if (!$patient) {
         Flash::set('danger','Invalid patient.');
-        header("Location: /WEBSYS_FINAL_PROJECT/public/?route=referral/edit&id=$id");
+        header("Location: /IMDBSE2/public/?route=referral/edit&id=$id");
         exit;
       }
       $data['tb_case_number'] = $patient['tb_case_number'];
@@ -252,13 +252,13 @@ class ReferralController {
                   'type' => 'incoming_referral',
                   'title' => 'Incoming Referral (updated)',
                   'message' => "Referral {$ref['referral_code']} has been assigned/changed to your barangay.",
-                  'link' => "/WEBSYS_FINAL_PROJECT/public/?route=referral/view&id=$id"
+                  'link' => "/IMDBSE2/public/?route=referral/view&id=$id"
               ]);
           }
       }
 
       Flash::set('success','Referral updated.');
-      header("Location: /WEBSYS_FINAL_PROJECT/public/?route=referral/view&id=$id");
+      header("Location: /IMDBSE2/public/?route=referral/view&id=$id");
       exit;
     }
 
@@ -280,7 +280,7 @@ class ReferralController {
 
     if (!$id) {
       Flash::set('danger','Missing ID');
-      header('Location: /WEBSYS_FINAL_PROJECT/public/?route=referral/index');
+      header('Location: /IMDBSE2/public/?route=referral/index');
       exit;
     }
 
@@ -291,7 +291,7 @@ class ReferralController {
                         $_SERVER['REMOTE_ADDR'], $_SERVER['HTTP_USER_AGENT'] ?? '');
 
     Flash::set('success','Referral deleted.');
-    header('Location: /WEBSYS_FINAL_PROJECT/public/?route=referral/index');
+    header('Location: /IMDBSE2/public/?route=referral/index');
     exit;
   }
 
@@ -301,14 +301,14 @@ class ReferralController {
       $id = $_GET['id'] ?? null;
       if (!$id) {
           Flash::set('danger','Missing ID');
-          header('Location: /WEBSYS_FINAL_PROJECT/public/?route=referral/index');
+          header('Location: /IMDBSE2/public/?route=referral/index');
           exit;
       }
 
       $ref = ReferralModel::getById($id);
       if (!$ref) {
           Flash::set('danger','Referral not found');
-          header('Location: /WEBSYS_FINAL_PROJECT/public/?route=referral/index');
+          header('Location: /IMDBSE2/public/?route=referral/index');
           exit;
       }
 
@@ -321,7 +321,7 @@ class ReferralController {
 
           if ($ref['patient_id'] != $pid) {
               Flash::set('danger','Access denied.');
-              header('Location: /WEBSYS_FINAL_PROJECT/public/?route=patientdashboard/referrals');
+              header('Location: /IMDBSE2/public/?route=patientdashboard/referrals');
               exit;
           }
       }

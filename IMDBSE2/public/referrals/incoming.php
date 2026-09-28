@@ -37,11 +37,11 @@ require_once __DIR__.'/../partials/navbar.php';
               <td class="text-center"><?= htmlspecialchars($r['referral_date']) ?></td>
               <td class="text-center">
                 <a class="btn btn-sm btn-primary"
-                   href="/WEBSYS_FINAL_PROJECT/public/?route=referral/view&id=<?= $r['referral_id'] ?>">View</a>
+                   href="/IMDBSE2/public/?route=referral/view&id=<?= $r['referral_id'] ?>">View</a>
 
                 <?php if (($r['referral_status'] ?? '') !== 'received'): ?>
                   <a class="btn btn-sm btn-success"
-                     href="/WEBSYS_FINAL_PROJECT/public/?route=referral/receive&id=<?= $r['referral_id'] ?>">Receive</a>
+                     href="/IMDBSE2/public/?route=referral/receive&id=<?= $r['referral_id'] ?>">Receive</a>
                 <?php endif; ?>
               </td>
             </tr>

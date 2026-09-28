@@ -46,7 +46,7 @@ class ContactController {
             );
 
             Flash::set('success','Contact saved.');
-            header("Location: /WEBSYS_FINAL_PROJECT/public/?route=contact/list");
+            header("Location: /IMDBSE2/public/?route=contact/list");
             exit;
         }
 
@@ -66,10 +66,10 @@ class ContactController {
         AuthMiddleware::requireRole(['super_admin', 'health_worker']);
 
         $id = $_GET['id'] ?? null;
-        if (!$id) { Flash::set('danger','Missing contact ID'); header("Location: /WEBSYS_FINAL_PROJECT/public/?route=contact/list"); exit; }
+        if (!$id) { Flash::set('danger','Missing contact ID'); header("Location: /IMDBSE2/public/?route=contact/list"); exit; }
 
         $contact = ContactModel::getById($id);
-        if (!$contact) { Flash::set('danger','Contact not found'); header("Location: /WEBSYS_FINAL_PROJECT/public/?route=contact/list"); exit; }
+        if (!$contact) { Flash::set('danger','Contact not found'); header("Location: /IMDBSE2/public/?route=contact/list"); exit; }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Process form
@@ -94,7 +94,7 @@ class ContactController {
             );
 
             Flash::set('success','Contact converted to patient.');
-            header("Location: /WEBSYS_FINAL_PROJECT/public/?route=patient/view&id=".$newPatientId);
+            header("Location: /IMDBSE2/public/?route=patient/view&id=".$newPatientId);
             exit;
         } else {
             // Show form

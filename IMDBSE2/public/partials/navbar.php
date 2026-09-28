@@ -41,15 +41,15 @@ require_once __DIR__ . '/../../src/models/NotificationModel.php';
   <div class="container-fluid">
 
     <?php
-      $brandLink = "/WEBSYS_FINAL_PROJECT/public/login.php";
+      $brandLink = "/IMDBSE2/public/login.php";
 
       if ($user) {
           if ($user['role'] === 'super_admin') {
-              $brandLink = "/WEBSYS_FINAL_PROJECT/public/?route=admin/dashboard";
+              $brandLink = "/IMDBSE2/public/?route=admin/dashboard";
           } elseif ($user['role'] === 'health_worker') {
-              $brandLink = "/WEBSYS_FINAL_PROJECT/public/?route=health/dashboard";
+              $brandLink = "/IMDBSE2/public/?route=health/dashboard";
           } elseif ($user['role'] === 'patient') {
-              $brandLink = "/WEBSYS_FINAL_PROJECT/public/?route=patientdashboard/index";
+              $brandLink = "/IMDBSE2/public/?route=patientdashboard/index";
           }
       }
     ?>
@@ -67,28 +67,28 @@ require_once __DIR__ . '/../../src/models/NotificationModel.php';
 
           <!-- SUPER ADMIN -->
           <?php if ($user['role'] === 'super_admin'): ?>
-            <li class="nav-item"><a class="nav-link" href="/WEBSYS_FINAL_PROJECT/public/?route=admin/dashboard">Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="/WEBSYS_FINAL_PROJECT/public/?route=patient/index">Patients</a></li>
+            <li class="nav-item"><a class="nav-link" href="/IMDBSE2/public/?route=admin/dashboard">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="/IMDBSE2/public/?route=patient/index">Patients</a></li>
 
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">User Management</a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/WEBSYS_FINAL_PROJECT/public/?route=admin/users">Add Users</a></li>
-                <li><a class="dropdown-item" href="/WEBSYS_FINAL_PROJECT/public/?route=user/create_health_worker">Add Health Worker</a></li>
+                <li><a class="dropdown-item" href="/IMDBSE2/public/?route=admin/users">Add Users</a></li>
+                <li><a class="dropdown-item" href="/IMDBSE2/public/?route=user/create_health_worker">Add Health Worker</a></li>
               </ul>
             </li>
 
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Records</a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/WEBSYS_FINAL_PROJECT/public/?route=contact/list">Contact Tracing</a></li>
-                <li><a class="dropdown-item" href="/WEBSYS_FINAL_PROJECT/public/?route=referral/index">Referrals</a></li>
+                <li><a class="dropdown-item" href="/IMDBSE2/public/?route=contact/list">Contact Tracing</a></li>
+                <li><a class="dropdown-item" href="/IMDBSE2/public/?route=referral/index">Referrals</a></li>
                 <li class="dropdown-submenu">
                   <a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Medications</a>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/WEBSYS_FINAL_PROJECT/public/?route=medication/list">View Medications</a></li>
-                    <li><a class="dropdown-item" href="/WEBSYS_FINAL_PROJECT/public/?route=medication/add">Add Medication</a></li>
-                    <li><a class="dropdown-item" href="/WEBSYS_FINAL_PROJECT/public/?route=medication/compliance">Compliance Tracking</a></li>
+                    <li><a class="dropdown-item" href="/IMDBSE2/public/?route=medication/list">View Medications</a></li>
+                    <li><a class="dropdown-item" href="/IMDBSE2/public/?route=medication/add">Add Medication</a></li>
+                    <li><a class="dropdown-item" href="/IMDBSE2/public/?route=medication/compliance">Compliance Tracking</a></li>
                   </ul>
                 </li>
               </ul>
@@ -97,52 +97,52 @@ require_once __DIR__ . '/../../src/models/NotificationModel.php';
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Tools</a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/WEBSYS_FINAL_PROJECT/public/?route=import/upload">Import CSV</a></li>
-                <li><a class="dropdown-item" href="/WEBSYS_FINAL_PROJECT/public/?route=log/index">Audit Logs</a></li>
-                <li><a class="dropdown-item" href="/WEBSYS_FINAL_PROJECT/public/?route=notification/list">Notifications</a></li>
-                <li><a class="dropdown-item" href="/WEBSYS_FINAL_PROJECT/public/?route=stafffollowup/index">Staff follow-up</a></li>
+                <li><a class="dropdown-item" href="/IMDBSE2/public/?route=import/upload">Import CSV</a></li>
+                <li><a class="dropdown-item" href="/IMDBSE2/public/?route=log/index">Audit Logs</a></li>
+                <li><a class="dropdown-item" href="/IMDBSE2/public/?route=notification/list">Notifications</a></li>
+                <li><a class="dropdown-item" href="/IMDBSE2/public/?route=stafffollowup/index">Staff follow-up</a></li>
               </ul>
             </li>
           <?php endif; ?>
 
           <!-- HEALTH WORKER -->
           <?php if ($user['role'] === 'health_worker'): ?>
-            <li class="nav-item"><a class="nav-link" href="/WEBSYS_FINAL_PROJECT/public/?route=health/dashboard">Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="/WEBSYS_FINAL_PROJECT/public/?route=patient/index">Patients</a></li>
+            <li class="nav-item"><a class="nav-link" href="/IMDBSE2/public/?route=health/dashboard">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="/IMDBSE2/public/?route=patient/index">Patients</a></li>
 
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Referrals</a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/WEBSYS_FINAL_PROJECT/public/?route=referral/sent">Sent Referrals</a></li>
-                <li><a class="dropdown-item" href="/WEBSYS_FINAL_PROJECT/public/?route=referral/incoming">Incoming Referrals</a></li>
-                <li><a class="dropdown-item" href="/WEBSYS_FINAL_PROJECT/public/?route=referral/received">Received Referrals</a></li>
+                <li><a class="dropdown-item" href="/IMDBSE2/public/?route=referral/sent">Sent Referrals</a></li>
+                <li><a class="dropdown-item" href="/IMDBSE2/public/?route=referral/incoming">Incoming Referrals</a></li>
+                <li><a class="dropdown-item" href="/IMDBSE2/public/?route=referral/received">Received Referrals</a></li>
               </ul>
             </li>
 
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Medical Records</a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/WEBSYS_FINAL_PROJECT/public/?route=medication/list">View Medications</a></li>
-                <li><a class="dropdown-item" href="/WEBSYS_FINAL_PROJECT/public/?route=medication/compliance">Compliance Tracking</a></li>
+                <li><a class="dropdown-item" href="/IMDBSE2/public/?route=medication/list">View Medications</a></li>
+                <li><a class="dropdown-item" href="/IMDBSE2/public/?route=medication/compliance">Compliance Tracking</a></li>
               </ul>
             </li>
 
-            <li class="nav-item"><a class="nav-link" href="/WEBSYS_FINAL_PROJECT/public/?route=notification/list">Notifications</a></li>
+            <li class="nav-item"><a class="nav-link" href="/IMDBSE2/public/?route=notification/list">Notifications</a></li>
           <?php endif; ?>
 
           <!-- PATIENT -->
           <?php if ($user['role'] === 'patient'): ?>
-            <li class="nav-item"><a class="nav-link" href="/WEBSYS_FINAL_PROJECT/public/?route=patientdashboard/index">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="/IMDBSE2/public/?route=patientdashboard/index">Dashboard</a></li>
 
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">My Health</a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/WEBSYS_FINAL_PROJECT/public/?route=patientdashboard/referrals">Referrals</a></li>
-                <li><a class="dropdown-item" href="/WEBSYS_FINAL_PROJECT/public/?route=patientdashboard/medications">Medications</a></li>
+                <li><a class="dropdown-item" href="/IMDBSE2/public/?route=patientdashboard/referrals">Referrals</a></li>
+                <li><a class="dropdown-item" href="/IMDBSE2/public/?route=patientdashboard/medications">Medications</a></li>
               </ul>
             </li>
 
-            <li class="nav-item"><a class="nav-link" href="/WEBSYS_FINAL_PROJECT/public/?route=patientdashboard/notifications">Notifications</a></li>
+            <li class="nav-item"><a class="nav-link" href="/IMDBSE2/public/?route=patientdashboard/notifications">Notifications</a></li>
           <?php endif; ?>
         <?php endif; ?>
       </ul>
@@ -154,11 +154,11 @@ require_once __DIR__ . '/../../src/models/NotificationModel.php';
           <!-- Profile Link -->
           <li class="nav-item me-2">
             <?php if ($user['role'] === 'super_admin'): ?>
-              <a class="nav-link" href="/WEBSYS_FINAL_PROJECT/public/?route=admin/profile">Profile</a>
+              <a class="nav-link" href="/IMDBSE2/public/?route=admin/profile">Profile</a>
             <?php elseif ($user['role'] === 'health_worker'): ?>
-              <a class="nav-link" href="/WEBSYS_FINAL_PROJECT/public/?route=health/profile">Profile</a>
+              <a class="nav-link" href="/IMDBSE2/public/?route=health/profile">Profile</a>
             <?php elseif ($user['role'] === 'patient'): ?>
-              <a class="nav-link" href="/WEBSYS_FINAL_PROJECT/public/?route=patientdashboard/profile">Profile</a>
+              <a class="nav-link" href="/IMDBSE2/public/?route=patientdashboard/profile">Profile</a>
             <?php endif; ?>
           </li>
 
@@ -177,7 +177,7 @@ require_once __DIR__ . '/../../src/models/NotificationModel.php';
             <ul class="dropdown-menu dropdown-menu-end p-2" style="min-width:360px;" id="notif-dropdown">
               <li class="d-flex justify-content-between align-items-center mb-2 px-2">
                 <strong>Notifications</strong>
-                <a href="/WEBSYS_FINAL_PROJECT/public/?route=notification/list" class="small">View all</a>
+                <a href="/IMDBSE2/public/?route=notification/list" class="small">View all</a>
               </li>
               <li><div id="notif-list" style="max-height:320px;overflow:auto;"></div></li>
               <li class="dropdown-divider"></li>
@@ -189,11 +189,11 @@ require_once __DIR__ . '/../../src/models/NotificationModel.php';
 
 
           <li class="nav-item">
-            <a class="nav-link" href="/WEBSYS_FINAL_PROJECT/public/?route=auth/logout">Logout</a>
+            <a class="nav-link" href="/IMDBSE2/public/?route=auth/logout">Logout</a>
           </li>
 
         <?php else: ?>
-          <li class="nav-item"><a class="nav-link" href="/WEBSYS_FINAL_PROJECT/public/login.php">Login</a></li>
+          <li class="nav-item"><a class="nav-link" href="/IMDBSE2/public/login.php">Login</a></li>
         <?php endif; ?>
       </ul>
 
@@ -228,7 +228,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.target.closest('a')) return;
 
         if (!isRead) {
-          fetch('/WEBSYS_FINAL_PROJECT/public/?route=notification/mark_read&id=' + n.notification_id)
+          fetch('/IMDBSE2/public/?route=notification/mark_read&id=' + n.notification_id)
             .then(() => {
               loadNotifications();
               updateUnreadCount();
@@ -260,7 +260,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll('.mark-read-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
-        fetch('/WEBSYS_FINAL_PROJECT/public/?route=notification/mark_read&id=' + btn.dataset.id)
+        fetch('/IMDBSE2/public/?route=notification/mark_read&id=' + btn.dataset.id)
           .then(() => { loadNotifications(); updateUnreadCount(); });
       });
     });
@@ -275,13 +275,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   async function loadNotifications() {
-    const res = await fetch('/WEBSYS_FINAL_PROJECT/public/?route=notification/json_latest');
+    const res = await fetch('/IMDBSE2/public/?route=notification/json_latest');
     const data = await res.json();
     renderNotifications(data);
   }
 
   async function updateUnreadCount() {
-    const res = await fetch('/WEBSYS_FINAL_PROJECT/public/?route=notification/json_unread_count');
+    const res = await fetch('/IMDBSE2/public/?route=notification/json_unread_count');
     const json = await res.json();
 
     const badge = document.getElementById('notif-badge');
@@ -300,7 +300,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById('mark-all-read')
     ?.addEventListener('click', async () => {
-      await fetch('/WEBSYS_FINAL_PROJECT/public/?route=notification/mark_all_read', { method: 'POST' });
+      await fetch('/IMDBSE2/public/?route=notification/mark_all_read', { method: 'POST' });
       await loadNotifications();
       await updateUnreadCount();
     });

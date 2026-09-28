@@ -17,7 +17,7 @@ $patients = PatientModel::getAll();
   <div class="card shadow-sm p-4">
     <h4 class="mb-3">Edit Medication</h4>
 
-    <form method="POST" action="/WEBSYS_FINAL_PROJECT/public/?route=medication/edit&id=<?=$id?>">
+    <form method="POST" action="/IMDBSE2/public/?route=medication/edit&id=<?=$id?>">
       <div class="mb-3">
         <label class="form-label">Patient</label>
         <?php
@@ -67,7 +67,7 @@ $patients = PatientModel::getAll();
         <button class="btn btn-primary">
           <i class="bi bi-check-circle me-1"></i>Update Medication
         </button>
-        <a href="/WEBSYS_FINAL_PROJECT/public/?route=medication/list" class="btn btn-secondary">
+        <a href="/IMDBSE2/public/?route=medication/list" class="btn btn-secondary">
           <i class="bi bi-x me-1"></i>Cancel
         </a>
       </div>

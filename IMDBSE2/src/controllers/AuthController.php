@@ -12,11 +12,11 @@ class AuthController {
         if (!empty($_SESSION['user'])) {
             $role = $_SESSION['user']['role'];
             if ($role === 'super_admin') {
-                header("Location: /WEBSYS_FINAL_PROJECT/public/?route=admin/dashboard");
+                header("Location: /IMDBSE2/public/?route=admin/dashboard");
             } elseif ($role === 'health_worker') {
-                header("Location: /WEBSYS_FINAL_PROJECT/public/?route=health/dashboard");
+                header("Location: /IMDBSE2/public/?route=health/dashboard");
             } else {
-                header("Location: /WEBSYS_FINAL_PROJECT/public/?route=patientdashboard/index");
+                header("Location: /IMDBSE2/public/?route=patientdashboard/index");
             }
             exit;
         }
@@ -31,12 +31,12 @@ class AuthController {
 
                 if (!$user['is_verified']) {
                     Flash::set('danger', 'Please verify your email first.');
-                    header("Location: /WEBSYS_FINAL_PROJECT/public/login.php");
+                    header("Location: /IMDBSE2/public/login.php");
                     exit;
                 }
 
                 if ($user['password_reset_required']) {
-                    header("Location: /WEBSYS_FINAL_PROJECT/public/set_new_password.php?uid=".$user['user_id']);
+                    header("Location: /IMDBSE2/public/set_new_password.php?uid=".$user['user_id']);
                     exit;
                 }
 
@@ -49,17 +49,17 @@ class AuthController {
                 }
 
                 if ($user['role'] === 'super_admin') {
-                    header("Location: /WEBSYS_FINAL_PROJECT/public/?route=admin/dashboard");
+                    header("Location: /IMDBSE2/public/?route=admin/dashboard");
                 } elseif ($user['role'] === 'health_worker') {
-                    header("Location: /WEBSYS_FINAL_PROJECT/public/?route=health/dashboard");
+                    header("Location: /IMDBSE2/public/?route=health/dashboard");
                 } else {
-                    header("Location: /WEBSYS_FINAL_PROJECT/public/?route=patientdashboard/index");
+                    header("Location: /IMDBSE2/public/?route=patientdashboard/index");
                 }
                 exit;
             }
 
             Flash::set('danger', 'Invalid email or password.');
-            header("Location: /WEBSYS_FINAL_PROJECT/public/login.php");
+            header("Location: /IMDBSE2/public/login.php");
             exit;
         }
 
@@ -68,7 +68,7 @@ class AuthController {
 
     public function logout() {
         session_destroy();
-        header("Location: /WEBSYS_FINAL_PROJECT/public/login.php");
+        header("Location: /IMDBSE2/public/login.php");
         exit;
     }
 
@@ -77,7 +77,7 @@ class AuthController {
 
         if (!$token) {
             Flash::set('danger', 'Invalid verification token.');
-            header("Location: /WEBSYS_FINAL_PROJECT/public/login.php");
+            header("Location: /IMDBSE2/public/login.php");
             exit;
         }
 
@@ -85,7 +85,7 @@ class AuthController {
 
         if (!$user) {
             Flash::set('danger', 'This verification link is invalid or already used.');
-            header("Location: /WEBSYS_FINAL_PROJECT/public/login.php");
+            header("Location: /IMDBSE2/public/login.php");
             exit;
         }
 
@@ -97,11 +97,11 @@ class AuthController {
             'type' => 'account_verified',
             'title' => 'Email Verified',
             'message' => 'Your email has been verified. Please set your password to complete account setup.',
-            'link' => "/WEBSYS_FINAL_PROJECT/public/?route=auth/set_new_password"
+            'link' => "/IMDBSE2/public/?route=auth/set_new_password"
         ]);
 
         Flash::set('success', 'Email verified. Please set your new password.');
-        header("Location: /WEBSYS_FINAL_PROJECT/public/set_new_password.php?uid=" . $user['user_id']);
+        header("Location: /IMDBSE2/public/set_new_password.php?uid=" . $user['user_id']);
         exit;
     }
 
@@ -114,7 +114,7 @@ class AuthController {
 
             if ($pass !== $confirm) {
                 Flash::set('danger', 'Passwords do not match.');
-                header("Location: /WEBSYS_FINAL_PROJECT/public/set_new_password.php?uid=$uid");
+                header("Location: /IMDBSE2/public/set_new_password.php?uid=$uid");
                 exit;
             }
 
@@ -127,11 +127,11 @@ class AuthController {
                 'type' => 'password_created',
                 'title' => 'Password Set',
                 'message' => 'Your password has been set successfully. You may now log in.',
-                'link' => "/WEBSYS_FINAL_PROJECT/public/?route=auth/login"
+                'link' => "/IMDBSE2/public/?route=auth/login"
             ]);
 
             Flash::set('success', 'Password created successfully. You may now log in.');
-            header("Location: /WEBSYS_FINAL_PROJECT/public/login.php");
+            header("Location: /IMDBSE2/public/login.php");
             exit;
         }
 
@@ -168,18 +168,18 @@ class AuthController {
                     'type' => 'password_changed',
                     'title' => 'Password Changed',
                     'message' => 'Your account password was changed successfully.',
-                    'link' => "/WEBSYS_FINAL_PROJECT/public/?route=auth/login"
+                    'link' => "/IMDBSE2/public/?route=auth/login"
                 ]);
 
                 Flash::set('success', 'Password updated successfully.');
             }
 
             if ($user['role'] === 'patient') {
-                header("Location: /WEBSYS_FINAL_PROJECT/public/?route=patientdashboard/profile");
+                header("Location: /IMDBSE2/public/?route=patientdashboard/profile");
             } elseif ($user['role'] === 'health_worker') {
-                header("Location: /WEBSYS_FINAL_PROJECT/public/?route=health/profile");
+                header("Location: /IMDBSE2/public/?route=health/profile");
             } elseif ($user['role'] === 'super_admin') {
-                header("Location: /WEBSYS_FINAL_PROJECT/public/?route=admin/profile");
+                header("Location: /IMDBSE2/public/?route=admin/profile");
             }
             exit;
         }

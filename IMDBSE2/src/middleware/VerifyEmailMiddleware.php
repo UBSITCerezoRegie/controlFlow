@@ -11,7 +11,7 @@ class VerifyEmailMiddleware {
         exit;
       }
       if ($u['password_reset_required']) {
-        header('Location: /WEBSYS_FINAL_PROJECT/public/set_new_password.php?uid='.$u['user_id']);
+        header('Location: /IMDBSE2/public/set_new_password.php?uid='.$u['user_id']);
         exit;
       }
     }

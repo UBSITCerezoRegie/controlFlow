@@ -9,7 +9,7 @@ $uid = $_GET['uid'] ?? ($_POST['uid'] ?? null);
   <div class="card shadow-sm p-4" style="max-width:400px; width:100%;">
     <h4 class="mb-3 text-center">Set New Password</h4>
 
-    <form method="POST" action="/WEBSYS_FINAL_PROJECT/public/?route=auth/reset_password" autocomplete="off" data-ajax="set_password">
+    <form method="POST" action="/IMDBSE2/public/?route=auth/reset_password" autocomplete="off" data-ajax="set_password">
 
       <input type="hidden" name="uid" value="<?=htmlspecialchars($uid)?>">
 

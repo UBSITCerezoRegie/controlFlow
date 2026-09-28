@@ -44,7 +44,7 @@ class PatientController {
                 $philhealthClean = preg_replace('/[^0-9]/', '', $data['philhealth_id']);
                 if (strlen($philhealthClean) !== 12) {
                     Flash::set('danger', 'PhilHealth ID must be exactly 12 digits');
-                    header("Location: /WEBSYS_FINAL_PROJECT/public/?route=patient/create");
+                    header("Location: /IMDBSE2/public/?route=patient/create");
                     exit;
                 }
                 $data['philhealth_id'] = $philhealthClean; // Store clean version
@@ -70,7 +70,7 @@ class PatientController {
             );
 
             Flash::set('success','Patient added.');
-            header("Location: /WEBSYS_FINAL_PROJECT/public/?route=patient/view&id=".$id);
+            header("Location: /IMDBSE2/public/?route=patient/view&id=".$id);
             exit;
         }
 
@@ -83,7 +83,7 @@ class PatientController {
 
         $id = $_GET['id'] ?? null;
 
-        if (!$id) { Flash::set('danger','Missing ID'); header("Location: /WEBSYS_FINAL_PROJECT/public/?route=patient/index"); exit; }
+        if (!$id) { Flash::set('danger','Missing ID'); header("Location: /IMDBSE2/public/?route=patient/index"); exit; }
 
         $patient = PatientModel::getById($id);
 
@@ -95,7 +95,7 @@ class PatientController {
                 $philhealthClean = preg_replace('/[^0-9]/', '', $_POST['philhealth_id']);
                 if (strlen($philhealthClean) !== 12) {
                     Flash::set('danger', 'PhilHealth ID must be exactly 12 digits');
-                    header("Location: /WEBSYS_FINAL_PROJECT/public/?route=patient/edit&id=$id");
+                    header("Location: /IMDBSE2/public/?route=patient/edit&id=$id");
                     exit;
                 }
                 $_POST['philhealth_id'] = $philhealthClean; // Store clean version
@@ -115,7 +115,7 @@ class PatientController {
             );
 
             Flash::set('success','Patient updated.');
-            header("Location: /WEBSYS_FINAL_PROJECT/public/?route=patient/view&id=".$id);
+            header("Location: /IMDBSE2/public/?route=patient/view&id=".$id);
             exit;
         }
 
@@ -127,7 +127,7 @@ class PatientController {
         AuthMiddleware::requireLogin();
 
         $id = $_GET['id'] ?? null;
-        if (!$id) { Flash::set('danger','Missing ID'); header("Location: /WEBSYS_FINAL_PROJECT/public/?route=patient/index"); exit; }
+        if (!$id) { Flash::set('danger','Missing ID'); header("Location: /IMDBSE2/public/?route=patient/index"); exit; }
 
         $patient = PatientModel::getById($id);
 
@@ -154,7 +154,7 @@ class PatientController {
         );
 
         Flash::set('success','Patient deleted.');
-        header('Location: /WEBSYS_FINAL_PROJECT/public/?route=patient/index');
+        header('Location: /IMDBSE2/public/?route=patient/index');
         exit;
     }
 }

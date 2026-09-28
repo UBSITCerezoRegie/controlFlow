@@ -8,7 +8,7 @@ AuthMiddleware::requireRole(['super_admin', 'health_worker']);
 <div class="container py-4">
   <div class="d-flex justify-content-between align-items-center mb-3">
     <h3>Medication Compliance Tracking</h3>
-    <a href="/WEBSYS_FINAL_PROJECT/public/?route=medication/list" class="btn btn-outline-secondary">All Medications</a>
+    <a href="/IMDBSE2/public/?route=medication/list" class="btn btn-outline-secondary">All Medications</a>
   </div>
 
   <div class="alert alert-info">
@@ -51,7 +51,7 @@ AuthMiddleware::requireRole(['super_admin', 'health_worker']);
                 </span>
               </td>
               <td class="text-center">
-                <a href="/WEBSYS_FINAL_PROJECT/public/?route=medication/mark_compliance&id=<?=$med['medication_id']?>"
+                <a href="/IMDBSE2/public/?route=medication/mark_compliance&id=<?=$med['medication_id']?>"
                    class="btn btn-primary btn-sm">
                   Mark Compliance
                 </a>

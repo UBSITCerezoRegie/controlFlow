@@ -100,7 +100,7 @@ require_once __DIR__.'/../partials/navbar.php';
       <button class="btn btn-primary">
         <i class="bi bi-check-circle me-1"></i>Create Referral
       </button>
-      <a href="/WEBSYS_FINAL_PROJECT/public/?route=referral/index" class="btn btn-secondary">
+      <a href="/IMDBSE2/public/?route=referral/index" class="btn btn-secondary">
         <i class="bi bi-x me-1"></i>Cancel
       </a>
     </div>

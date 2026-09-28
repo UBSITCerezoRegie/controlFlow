@@ -23,7 +23,7 @@ $hasPendingRef = ReferralModel::patientHasPending($patient['patient_id']);
 
   <div class="card shadow-sm p-4">
     <form method="POST"
-          action="/WEBSYS_FINAL_PROJECT/public/?route=patient/edit&id=<?= $patient['patient_id'] ?>">
+          action="/IMDBSE2/public/?route=patient/edit&id=<?= $patient['patient_id'] ?>">
 
       <div class="mb-3">
         <label class="form-label">Patient Code</label>
@@ -149,7 +149,7 @@ $hasPendingRef = ReferralModel::patientHasPending($patient['patient_id']);
         <button class="btn btn-primary">
           <i class="bi bi-check-circle me-1"></i>Save Changes
         </button>
-        <a href="/WEBSYS_FINAL_PROJECT/public/?route=patient/view&id=<?= $patient['patient_id'] ?>" class="btn btn-secondary">
+        <a href="/IMDBSE2/public/?route=patient/view&id=<?= $patient['patient_id'] ?>" class="btn btn-secondary">
           <i class="bi bi-x me-1"></i>Cancel
         </a>
       </div>

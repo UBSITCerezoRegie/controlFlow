@@ -9,7 +9,7 @@ require_once __DIR__.'/../partials/navbar.php';
   <div class="d-flex justify-content-between align-items-end mb-3">
 
     <!-- Add Contact button aligned with inputs -->
-    <a href="/WEBSYS_FINAL_PROJECT/public/?route=contact/add"
+    <a href="/IMDBSE2/public/?route=contact/add"
        class="btn btn-primary"
        style="height: 38px; display: flex; align-items: center;">
        Add Contact
@@ -18,7 +18,7 @@ require_once __DIR__.'/../partials/navbar.php';
     <!-- SEARCH + FILTERS -->
     <form class="d-flex gap-3 align-items-end"
           method="GET"
-          action="/WEBSYS_FINAL_PROJECT/public/"
+          action="/IMDBSE2/public/"
           data-ajax="contacts"
           style="max-width: 600px;">
 
@@ -83,7 +83,7 @@ require_once __DIR__.'/../partials/navbar.php';
             <td class="text-center"><?=htmlspecialchars($c['barangay'])?></td>
             <td class="text-center">
               <?php if (!empty($c['patient_id'])): ?>
-                <a href="/WEBSYS_FINAL_PROJECT/public/?route=patient/view&id=<?=$c['patient_id']?>"
+                <a href="/IMDBSE2/public/?route=patient/view&id=<?=$c['patient_id']?>"
                   class="btn btn-sm btn-link">
                   <?= htmlspecialchars($c['name'] ?? '') ?> (<?= htmlspecialchars($c['patient_code']) ?>)
                 </a>
@@ -96,7 +96,7 @@ require_once __DIR__.'/../partials/navbar.php';
             <td class="text-center"><?=$c['status']?></td>
             <td class="text-center">
               <?php if ($c['status'] !== 'converted_patient'): ?>
-                <a href="/WEBSYS_FINAL_PROJECT/public/?route=contact/convert&id=<?=$c['contact_id']?>" class="btn btn-sm btn-outline-warning">Convert</a>
+                <a href="/IMDBSE2/public/?route=contact/convert&id=<?=$c['contact_id']?>" class="btn btn-sm btn-outline-warning">Convert</a>
               <?php endif; ?>
             </td>
           </tr>

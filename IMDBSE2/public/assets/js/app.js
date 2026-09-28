@@ -332,7 +332,7 @@ function createSearchableAjaxDropdown(selectElement, placeholder = 'Search...') 
 
   async function search(q) {
     try {
-      const url = "/WEBSYS_FINAL_PROJECT/public/?route=ajax/search_barangay&q=" + encodeURIComponent(q || '');
+      const url = "/IMDBSE2/public/?route=ajax/search_barangay&q=" + encodeURIComponent(q || '');
       const res = await fetch(url);
       const items = await res.json();
       list.innerHTML = '';
@@ -412,7 +412,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const val = emailField.value.trim();
       if (!val) { if (statusBox) statusBox.innerHTML = ''; if (submitBtn) submitBtn.disabled = true; return; }
       t = setTimeout(() => {
-        fetch("/WEBSYS_FINAL_PROJECT/public/?route=ajax/check_email&email=" + encodeURIComponent(val))
+        fetch("/IMDBSE2/public/?route=ajax/check_email&email=" + encodeURIComponent(val))
           .then(r => r.json())
           .then(data => {
             if (statusBox) statusBox.innerHTML = data.valid ? "<span class='text-success'>" + data.message + "</span>" : "<span class='text-danger'>" + data.message + "</span>";
@@ -458,7 +458,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const from = fromInput ? fromInput.value : '';
         const to = toInput ? toInput.value : '';
 
-        const url = `/WEBSYS_FINAL_PROJECT/public/?route=ajax/${cfg.endpoint}&user_id=${encodeURIComponent(userId)}&action=${encodeURIComponent(action)}&table_name=${encodeURIComponent(tableName)}&from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`;
+        const url = `/IMDBSE2/public/?route=ajax/${cfg.endpoint}&user_id=${encodeURIComponent(userId)}&action=${encodeURIComponent(action)}&table_name=${encodeURIComponent(tableName)}&from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`;
         const tbody = document.querySelector(cfg.tbody);
         if (tbody) tbody.innerHTML = `<tr><td colspan="${cfg.cols}" class="text-center text-muted py-3"><i class="bi bi-arrow-repeat spinning"></i> Loading...</td></tr>`;
 
@@ -547,7 +547,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const treatmentOutcome = form.querySelector("select[name='treatment_outcome']") ? form.querySelector("select[name='treatment_outcome']").value : '';
-      const url = `/WEBSYS_FINAL_PROJECT/public/?route=ajax/${cfg.endpoint}&q=${encodeURIComponent(q)}&barangay=${encodeURIComponent(barangay)}&referring_barangay=${encodeURIComponent(referring_barangay)}&treatment_outcome=${encodeURIComponent(treatmentOutcome)}`;
+      const url = `/IMDBSE2/public/?route=ajax/${cfg.endpoint}&q=${encodeURIComponent(q)}&barangay=${encodeURIComponent(barangay)}&referring_barangay=${encodeURIComponent(referring_barangay)}&treatment_outcome=${encodeURIComponent(treatmentOutcome)}`;
       const tbody = document.querySelector(cfg.tbody);
       if (tbody) tbody.innerHTML = `<tr><td colspan="${cfg.cols}" class="text-center text-muted py-3"><i class="bi bi-arrow-repeat spinning"></i> Loading...</td></tr>`;
 
@@ -568,7 +568,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td class="text-center">${escapeHtml(hw.email)}</td>
                 <td class="text-center">${v}</td>
                 <td class="text-center">${escapeHtml(hw.barangay_assigned || '')}</td>
-                <td class="text-center"><a href="/WEBSYS_FINAL_PROJECT/public/?route/user/delete_user&id=${hw.user_id}" onclick="return confirm('Delete this user?');" class="btn btn-danger btn-sm">Delete</a></td>
+                <td class="text-center"><a href="/IMDBSE2/public/?route/user/delete_user&id=${hw.user_id}" onclick="return confirm('Delete this user?');" class="btn btn-danger btn-sm">Delete</a></td>
               </tr>`;
             });
           } else if (type === 'patient_users') {
@@ -579,7 +579,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td class="text-center">${v}</td>
                 <td class="text-center">${escapeHtml(u.patient_code || '')}</td>
                 <td class="text-center">${escapeHtml(u.patient_barangay || '')}</td>
-                <td class="text-center"><a href="/WEBSYS_FINAL_PROJECT/public/?route/user/delete_user&id=${u.user_id}" onclick="return confirm('Delete this user?');" class="btn btn-danger btn-sm">Delete</a></td>
+                <td class="text-center"><a href="/IMDBSE2/public/?route/user/delete_user&id=${u.user_id}" onclick="return confirm('Delete this user?');" class="btn btn-danger btn-sm">Delete</a></td>
               </tr>`;
             });
           } else if (type === 'patients') {
@@ -587,7 +587,7 @@ document.addEventListener('DOMContentLoaded', () => {
               let acct = '<span class="badge bg-success">Has Account</span>';
               if (!p.has_user) {
                 if (window && window.USER_ROLE === 'super_admin') {
-                  acct = `<a href="/WEBSYS_FINAL_PROJECT/public/?route=admin/users&patient_id=${p.patient_id}" class="badge bg-secondary text-decoration-none">No Account — Create</a>`;
+                  acct = `<a href="/IMDBSE2/public/?route=admin/users&patient_id=${p.patient_id}" class="badge bg-secondary text-decoration-none">No Account — Create</a>`;
                 } else {
                   acct = '<span class="badge bg-secondary">No Account</span>';
                 }
@@ -624,7 +624,7 @@ document.addEventListener('DOMContentLoaded', () => {
               // render action buttons (delete only if window.USER_ROLE === 'super_admin', otherwise omit)
               let deleteBtn = '';
               if (window && window.USER_ROLE === 'super_admin') {
-                deleteBtn = `<a href="/WEBSYS_FINAL_PROJECT/public/?route=patient/delete&id=${p.patient_id}" onclick="return confirm('Delete this patient?');" class="btn btn-sm btn-danger">Delete</a>`;
+                deleteBtn = `<a href="/IMDBSE2/public/?route=patient/delete&id=${p.patient_id}" onclick="return confirm('Delete this patient?');" class="btn btn-sm btn-danger">Delete</a>`;
               }
               html += `<tr>
                 <td class="text-center">${escapeHtml(p.patient_code || '')}</td>
@@ -636,7 +636,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td class="text-center">${statusBadge}</td>
                 <td class="text-center">${escapeHtml(philId)}</td>
                 <td class="text-center">${acct}</td>
-                <td class="text-center"><div class="action-buttons d-flex justify-content-center gap-1"><a href="/WEBSYS_FINAL_PROJECT/public/?route=patient/view&id=${p.patient_id}" class="btn btn-sm btn-outline-primary">View</a>${deleteBtn}</div></td>
+                <td class="text-center"><div class="action-buttons d-flex justify-content-center gap-1"><a href="/IMDBSE2/public/?route=patient/view&id=${p.patient_id}" class="btn btn-sm btn-outline-primary">View</a>${deleteBtn}</div></td>
               </tr>`;
             });
           } else if (type === 'contacts') {
@@ -645,20 +645,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td class="text-center">${escapeHtml(c.contact_code)}</td>
                 <td class="text-center">${escapeHtml(c.barangay)}</td>
                 <td class="text-center">
-                  ${c.patient_id ? `<a href="/WEBSYS_FINAL_PROJECT/public/?route=patient/view&id=${escapeHtml(c.patient_id)}" class="btn btn-sm btn-link">${escapeHtml(c.name || '')} (${escapeHtml(c.patient_code)})</a>` : '<em class="text-muted small">None</em>'}
+                  ${c.patient_id ? `<a href="/IMDBSE2/public/?route=patient/view&id=${escapeHtml(c.patient_id)}" class="btn btn-sm btn-link">${escapeHtml(c.name || '')} (${escapeHtml(c.patient_code)})</a>` : '<em class="text-muted small">None</em>'}
                 </td>
                 <td class="text-center">${escapeHtml(c.age || '')}</td>
                 <td class="text-center">${escapeHtml(c.sex || '')}</td>
                 <td class="text-center">${escapeHtml(c.status)}</td>
                 <td class="text-center">
-                  ${c.status !== 'converted_patient' ? `<a href="/WEBSYS_FINAL_PROJECT/public/?route/contact/convert&id=${c.contact_id}" class="btn btn-sm btn-outline-warning">Convert</a>` : ''}
+                  ${c.status !== 'converted_patient' ? `<a href="/IMDBSE2/public/?route/contact/convert&id=${c.contact_id}" class="btn btn-sm btn-outline-warning">Convert</a>` : ''}
                 </td>
               </tr>`;
             });
           } else if (type === 'medications') {
             data.forEach(m => {
-              const deleteBtn = (window && window.USER_ROLE !== 'patient') ? `<a href="/WEBSYS_FINAL_PROJECT/public/?route/medication/delete&id=${m.medication_id}" onclick="return confirm('Delete medication?');" class="btn btn-sm btn-danger">Delete</a>` : '';
-              const editBtn = (window && window.USER_ROLE !== 'patient') ? `<a href="/WEBSYS_FINAL_PROJECT/public/?route/medication/edit&id=${m.medication_id}" class="btn btn-sm btn-warning">Edit</a>` : '';
+              const deleteBtn = (window && window.USER_ROLE !== 'patient') ? `<a href="/IMDBSE2/public/?route/medication/delete&id=${m.medication_id}" onclick="return confirm('Delete medication?');" class="btn btn-sm btn-danger">Delete</a>` : '';
+              const editBtn = (window && window.USER_ROLE !== 'patient') ? `<a href="/IMDBSE2/public/?route/medication/edit&id=${m.medication_id}" class="btn btn-sm btn-warning">Edit</a>` : '';
               html += `<tr>
                 <td class="text-center">${escapeHtml(m.name || '')} (${escapeHtml(m.patient_code)})</td>
                 <td class="text-center">${escapeHtml(m.drugs || '')}</td>
@@ -672,8 +672,8 @@ document.addEventListener('DOMContentLoaded', () => {
           } else if (type === 'referrals' || type === 'sent_referrals' || type === 'incoming_referrals' || type === 'received_referrals') {
             data.forEach(r => {
               const statusBadge = r.referral_status === 'received' ? '<span class="badge bg-success">Received</span>' : '<span class="badge bg-warning text-dark">Pending</span>';
-              const viewBtn = `<a href="/WEBSYS_FINAL_PROJECT/public/?route/referral/view&id=${r.referral_id}" class="btn btn-sm btn-primary">View</a>`;
-              const deleteBtn = (window && window.USER_ROLE === 'super_admin') ? `<a href="/WEBSYS_FINAL_PROJECT/public/?route/referral/delete&id=${r.referral_id}" onclick="return confirm('Delete this referral?');" class="btn btn-sm btn-danger">Delete</a>` : '';
+              const viewBtn = `<a href="/IMDBSE2/public/?route/referral/view&id=${r.referral_id}" class="btn btn-sm btn-primary">View</a>`;
+              const deleteBtn = (window && window.USER_ROLE === 'super_admin') ? `<a href="/IMDBSE2/public/?route/referral/delete&id=${r.referral_id}" onclick="return confirm('Delete this referral?');" class="btn btn-sm btn-danger">Delete</a>` : '';
               html += `<tr>
                 <td class="text-center">${escapeHtml(r.referral_code)}</td>
                 <td class="text-center">${escapeHtml(r.name || '')} (${escapeHtml(r.patient_code)})</td>

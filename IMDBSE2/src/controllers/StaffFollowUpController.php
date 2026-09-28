@@ -23,7 +23,7 @@ class StafffollowupController {
         $id = $_GET['id'] ?? null;
         if (!$id) {
             Flash::set('danger','Missing ID');
-            header("Location: /WEBSYS_FINAL_PROJECT/public/?route=stafffollowup/index");
+            header("Location: /IMDBSE2/public/?route=stafffollowup/index");
             exit;
         }
 
@@ -35,7 +35,7 @@ class StafffollowupController {
 
         if (!$notification) {
             Flash::set('danger', 'Notification not found.');
-            header("Location: /WEBSYS_FINAL_PROJECT/public/?route=stafffollowup/index");
+            header("Location: /IMDBSE2/public/?route=stafffollowup/index");
             exit;
         }
 
@@ -78,7 +78,7 @@ class StafffollowupController {
                     'type' => 'follow_up_resolved_health_worker',
                     'title' => 'Follow-up Completed in Your Area',
                     'message' => 'A medication adherence follow-up has been resolved and addressed. The patient has been contacted.',
-                    'link' => '/WEBSYS_FINAL_PROJECT/public/?route=patient/view&id=' . $notification['patient_id']
+                    'link' => '/IMDBSE2/public/?route=patient/view&id=' . $notification['patient_id']
                 ]);
 
                 // Test immediate notification creation and email sending
@@ -122,12 +122,12 @@ class StafffollowupController {
                 'type' => 'follow_up_resolved_patient',
                 'title' => 'Follow-up Completed',
                 'message' => 'Your healthcare follow-up regarding medication adherence has been addressed. Thank you for working with our team.',
-                'link' => '/WEBSYS_FINAL_PROJECT/public/?route=patient/medications'
+                'link' => '/IMDBSE2/public/?route=patient/medications'
             ]);
         }
 
         Flash::set('success','Follow-up marked as resolved. Patient and health workers have been notified.');
-        header("Location: /WEBSYS_FINAL_PROJECT/public/?route=stafffollowup/index");
+        header("Location: /IMDBSE2/public/?route=stafffollowup/index");
         exit;
     }
 }

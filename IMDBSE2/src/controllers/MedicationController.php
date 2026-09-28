@@ -96,7 +96,7 @@ class MedicationController {
                     count($drugs) > 1 ?
                         'New medication drugs have been added to your record. Please check your medications list.' :
                         'A new medication schedule has been added to your record. Please check your medications list.',
-                    "/WEBSYS_FINAL_PROJECT/public/?route=patient/medications"
+                    "/IMDBSE2/public/?route=patient/medications"
                 );
 
                 // 2) Notify health workers assigned to patient's barangay
@@ -116,7 +116,7 @@ class MedicationController {
                             'message' => count($drugs) > 1 ?
                                 'Medication drugs were added for a patient in your barangay.' :
                                 'A medication schedule was added for a patient in your barangay.',
-                            'link' => "/WEBSYS_FINAL_PROJECT/public/?route=patient/view&id=" . $patient_id
+                            'link' => "/IMDBSE2/public/?route=patient/view&id=" . $patient_id
                         ]);
                     }
                 }
@@ -140,7 +140,7 @@ class MedicationController {
 
             $drugCount = count(array_filter($drugs)); // Count non-empty drugs
             Flash::set('success', "Medication " . ($drugCount > 1 ? 'drugs' : 'drug') . " added successfully.");
-            header("Location: /WEBSYS_FINAL_PROJECT/public/?route=medication/list");
+            header("Location: /IMDBSE2/public/?route=medication/list");
             exit;
         }
 
@@ -165,7 +165,7 @@ class MedicationController {
                     'type' => 'medication_week_reminder',
                     'title' => 'Upcoming Medication Schedule',
                     'message' => "Your medication begins in 1 week on ({$start_date}). Please prepare.",
-                    'link' => "/WEBSYS_FINAL_PROJECT/public/?route=patient/medications",
+                    'link' => "/IMDBSE2/public/?route=patient/medications",
                     'scheduled_at' => $one_week_before
                 ]);
             }
@@ -179,7 +179,7 @@ class MedicationController {
                     'type' => 'medication_pre_reminder',
                     'title' => 'Medication Reminder',
                     'message' => "Your medication begins tomorrow ({$start_date}).",
-                    'link' => "/WEBSYS_FINAL_PROJECT/public/?route=patient/medications",
+                    'link' => "/IMDBSE2/public/?route=patient/medications",
                     'scheduled_at' => $one_day_before
                 ]);
             }
@@ -191,7 +191,7 @@ class MedicationController {
                 'type' => 'medication_today',
                 'title' => 'Medication Starts Today',
                 'message' => "Your medication begins today ({$start_date}).",
-                'link' => "/WEBSYS_FINAL_PROJECT/public/?route=patient/medications",
+                'link' => "/IMDBSE2/public/?route=patient/medications",
                 'scheduled_at' => $same_day
             ]);
         }
@@ -228,13 +228,13 @@ class MedicationController {
     public function edit() {
         AuthMiddleware::requireRole(['super_admin','health_worker']);
         $id = $_GET['id'] ?? null;
-        if (!$id) { Flash::set('danger','Missing ID'); header("Location: /WEBSYS_FINAL_PROJECT/public/?route=medication/list"); exit; }
+        if (!$id) { Flash::set('danger','Missing ID'); header("Location: /IMDBSE2/public/?route=medication/list"); exit; }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             MedicationModel::update($id, $_POST);
             LogModel::insertLog($_SESSION['user']['user_id'],'update','medications',$id,null,json_encode($_POST), $_SERVER['REMOTE_ADDR'], $_SERVER['HTTP_USER_AGENT'] ?? '');
             Flash::set('success','Medication updated.');
-            header("Location: /WEBSYS_FINAL_PROJECT/public/?route=medication/list");
+            header("Location: /IMDBSE2/public/?route=medication/list");
             exit;
         }
 
@@ -251,7 +251,7 @@ class MedicationController {
         LogModel::insertLog($_SESSION['user']['user_id'],'delete','medications',$id,null,null,$_SERVER['REMOTE_ADDR'], $_SERVER['HTTP_USER_AGENT'] ?? '');
 
         Flash::set('success','Medication deleted.');
-        header('Location: /WEBSYS_FINAL_PROJECT/public/?route=medication/list');
+        header('Location: /IMDBSE2/public/?route=medication/list');
         exit;
     }
 
@@ -323,7 +323,7 @@ class MedicationController {
                         'type' => 'staff_follow_up',
                         'title' => 'Missed Medication Follow-up Required',
                         'message' => "Patient medication '{$med['drugs']}' has been marked as missed. Follow-up required.",
-                        'link' => "/WEBSYS_FINAL_PROJECT/public/?route=patient/view&id=" . $med['patient_id']
+                        'link' => "/IMDBSE2/public/?route=patient/view&id=" . $med['patient_id']
                     ]);
 
                     // Notify health workers individually via email (but don't create duplicate follow-up entries)
@@ -333,7 +333,7 @@ class MedicationController {
                             'type' => 'health_worker_alert', // Separate type to avoid duplicate follow-up entries
                             'title' => 'Medication Follow-up Required in Your Area',
                             'message' => "Patient medication '{$med['drugs']}' (ID: {$medication_id}) has been marked as missed. Please follow up immediately.",
-                            'link' => "/WEBSYS_FINAL_PROJECT/public/?route=patient/view&id=" . $med['patient_id']
+                            'link' => "/IMDBSE2/public/?route=patient/view&id=" . $med['patient_id']
                         ]);
                     }
                 }
@@ -343,7 +343,7 @@ class MedicationController {
                 Flash::set('danger', 'Failed to update compliance status.');
             }
 
-            header("Location: /WEBSYS_FINAL_PROJECT/public/?route=medication/compliance");
+            header("Location: /IMDBSE2/public/?route=medication/compliance");
             exit;
         }
 
@@ -351,14 +351,14 @@ class MedicationController {
         $medication_id = intval($_GET['id'] ?? 0);
         if (!$medication_id) {
             Flash::set('danger', 'Missing medication ID.');
-            header("Location: /WEBSYS_FINAL_PROJECT/public/?route=medication/compliance");
+            header("Location: /IMDBSE2/public/?route=medication/compliance");
             exit;
         }
 
         $medication = MedicationModel::getById($medication_id);
         if (!$medication) {
             Flash::set('danger', 'Medication not found.');
-            header("Location: /WEBSYS_FINAL_PROJECT/public/?route=medication/compliance");
+            header("Location: /IMDBSE2/public/?route=medication/compliance");
             exit;
         }
 
