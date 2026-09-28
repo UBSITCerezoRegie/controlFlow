@@ -1,0 +1,330 @@
+<?php
+if (!isset($_SESSION)) session_start();
+$user = $_SESSION['user'] ?? null;
+require_once __DIR__ . '/../../src/models/NotificationModel.php';
+?>
+
+<!-- Make sure Bootstrap Icons are loaded -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<style>
+/* Nested dropdown for Medications - expand to the right */
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-left: 0px;
+  margin-top: -1px;
+  display: none;
+}
+
+.dropdown-submenu:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-submenu .dropdown-toggle::after {
+  display: inline-block;
+  margin-left: .255em;
+  vertical-align: .255em;
+  content: "";
+  border-top: .3em solid;
+  border-right: .3em solid transparent;
+  border-bottom: 0;
+  border-left: .3em solid transparent;
+}
+</style>
+
+<nav class="navbar navbar-expand-lg bg-primary mb-4" data-bs-theme="dark">
+  <div class="container-fluid">
+
+    <?php
+      $brandLink = "/IMDBSE2/public/login.php";
+
+      if ($user) {
+          if ($user['role'] === 'super_admin') {
+              $brandLink = "/IMDBSE2/public/?route=admin/dashboard";
+          } elseif ($user['role'] === 'health_worker') {
+              $brandLink = "/IMDBSE2/public/?route=health/dashboard";
+          } elseif ($user['role'] === 'patient') {
+              $brandLink = "/IMDBSE2/public/?route=patientdashboard/index";
+          }
+      }
+    ?>
+
+    <a class="navbar-brand fw-bold" href="<?= $brandLink ?>">TB-MAS</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+
+        <?php if ($user): ?>
+
+          <!-- SUPER ADMIN -->
+          <?php if ($user['role'] === 'super_admin'): ?>
+            <li class="nav-item"><a class="nav-link" href="/IMDBSE2/public/?route=admin/dashboard">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="/IMDBSE2/public/?route=patient/index">Patients</a></li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">User Management</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/IMDBSE2/public/?route=admin/users">Add Users</a></li>
+                <li><a class="dropdown-item" href="/IMDBSE2/public/?route=user/create_health_worker">Add Health Worker</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Records</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/IMDBSE2/public/?route=contact/list">Contact Tracing</a></li>
+                <li><a class="dropdown-item" href="/IMDBSE2/public/?route=referral/index">Referrals</a></li>
+                <li class="dropdown-submenu">
+                  <a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Medications</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/IMDBSE2/public/?route=medication/list">View Medications</a></li>
+                    <li><a class="dropdown-item" href="/IMDBSE2/public/?route=medication/add">Add Medication</a></li>
+                    <li><a class="dropdown-item" href="/IMDBSE2/public/?route=medication/compliance">Compliance Tracking</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Tools</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/IMDBSE2/public/?route=import/upload">Import CSV</a></li>
+                <li><a class="dropdown-item" href="/IMDBSE2/public/?route=log/index">Audit Logs</a></li>
+                <li><a class="dropdown-item" href="/IMDBSE2/public/?route=notification/list">Notifications</a></li>
+                <li><a class="dropdown-item" href="/IMDBSE2/public/?route=stafffollowup/index">Staff follow-up</a></li>
+              </ul>
+            </li>
+          <?php endif; ?>
+
+          <!-- HEALTH WORKER -->
+          <?php if ($user['role'] === 'health_worker'): ?>
+            <li class="nav-item"><a class="nav-link" href="/IMDBSE2/public/?route=health/dashboard">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="/IMDBSE2/public/?route=patient/index">Patients</a></li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Referrals</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/IMDBSE2/public/?route=referral/sent">Sent Referrals</a></li>
+                <li><a class="dropdown-item" href="/IMDBSE2/public/?route=referral/incoming">Incoming Referrals</a></li>
+                <li><a class="dropdown-item" href="/IMDBSE2/public/?route=referral/received">Received Referrals</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Medical Records</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/IMDBSE2/public/?route=medication/list">View Medications</a></li>
+                <li><a class="dropdown-item" href="/IMDBSE2/public/?route=medication/compliance">Compliance Tracking</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item"><a class="nav-link" href="/IMDBSE2/public/?route=notification/list">Notifications</a></li>
+          <?php endif; ?>
+
+          <!-- PATIENT -->
+          <?php if ($user['role'] === 'patient'): ?>
+            <li class="nav-item"><a class="nav-link" href="/IMDBSE2/public/?route=patientdashboard/index">Dashboard</a></li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">My Health</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/IMDBSE2/public/?route=patientdashboard/referrals">Referrals</a></li>
+                <li><a class="dropdown-item" href="/IMDBSE2/public/?route=patientdashboard/medications">Medications</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item"><a class="nav-link" href="/IMDBSE2/public/?route=patientdashboard/notifications">Notifications</a></li>
+          <?php endif; ?>
+        <?php endif; ?>
+      </ul>
+
+      <!-- RIGHT SIDE -->
+      <ul class="navbar-nav align-items-center">
+        <?php if ($user): ?>
+
+          <!-- Profile Link -->
+          <li class="nav-item me-2">
+            <?php if ($user['role'] === 'super_admin'): ?>
+              <a class="nav-link" href="/IMDBSE2/public/?route=admin/profile">Profile</a>
+            <?php elseif ($user['role'] === 'health_worker'): ?>
+              <a class="nav-link" href="/IMDBSE2/public/?route=health/profile">Profile</a>
+            <?php elseif ($user['role'] === 'patient'): ?>
+              <a class="nav-link" href="/IMDBSE2/public/?route=patientdashboard/profile">Profile</a>
+            <?php endif; ?>
+          </li>
+
+          <!-- Notification Bell -->
+          <li class="nav-item dropdown me-2">
+            <?php $unread = NotificationModel::countUnreadForUser($user['user_id']); ?>
+
+            <a class="nav-link position-relative" href="#" id="navNotifDropdown" data-bs-toggle="dropdown">
+              <i class="bi bi-bell" style="font-size:1.2rem;color:#fff;"></i>
+              <span id="notif-badge"
+                    class="<?= $unread > 0 ? 'position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger' : 'd-none' ?>">
+                <?= intval($unread) ?>
+              </span>
+            </a>
+
+            <ul class="dropdown-menu dropdown-menu-end p-2" style="min-width:360px;" id="notif-dropdown">
+              <li class="d-flex justify-content-between align-items-center mb-2 px-2">
+                <strong>Notifications</strong>
+                <a href="/IMDBSE2/public/?route=notification/list" class="small">View all</a>
+              </li>
+              <li><div id="notif-list" style="max-height:320px;overflow:auto;"></div></li>
+              <li class="dropdown-divider"></li>
+              <li class="px-2">
+                <button id="mark-all-read" class="btn btn-sm btn-outline-secondary w-100">Mark all as read</button>
+              </li>
+            </ul>
+          </li>
+
+
+          <li class="nav-item">
+            <a class="nav-link" href="/IMDBSE2/public/?route=auth/logout">Logout</a>
+          </li>
+
+        <?php else: ?>
+          <li class="nav-item"><a class="nav-link" href="/IMDBSE2/public/login.php">Login</a></li>
+        <?php endif; ?>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+<?php require_once __DIR__ . '/../../src/helpers/Flash.php'; ?>
+<?php Flash::display(); ?>
+
+<!-- JS -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  function renderNotifications(items) {
+    const container = document.getElementById('notif-list');
+    if (!container) return;
+    container.innerHTML = '';
+
+    if (!items || items.length === 0) {
+      container.innerHTML = '<div class="text-center text-muted p-3">No notifications.</div>';
+      return;
+    }
+
+    items.forEach(n => {
+      const isRead = (n.is_read == 1);
+
+      const tr = document.createElement('div');
+      tr.className = 'd-flex align-items-start gap-2 px-2 py-2 border-bottom cursor-pointer';
+
+      tr.addEventListener('click', (e) => {
+        if (e.target.closest('a')) return;
+
+        if (!isRead) {
+          fetch('/IMDBSE2/public/?route=notification/mark_read&id=' + n.notification_id)
+            .then(() => {
+              loadNotifications();
+              updateUnreadCount();
+            });
+        }
+      });
+
+      tr.innerHTML = `
+        <div class="flex-grow-1">
+          <div class="small fw-bold">${escapeHtml(n.title)}</div>
+          <div class="small text-muted">${escapeHtml(n.message)}</div>
+          <div class="small text-muted mt-1">${escapeHtml(n.created_at)}</div>
+        </div>
+
+        <div class="ms-2 d-flex flex-column gap-1">
+          ${n.link ? `<a href="${escapeAttr(n.link)}" class="btn btn-sm btn-outline-primary">Open</a>` : ''}
+          <button 
+            class="btn btn-sm btn-outline-secondary mark-read-btn"
+            data-id="${n.notification_id}"
+            ${isRead ? 'disabled' : ''}>
+            ${isRead ? 'Read' : 'Mark read'}
+          </button>
+        </div>
+      `;
+
+      container.appendChild(tr);
+    });
+
+    document.querySelectorAll('.mark-read-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        fetch('/IMDBSE2/public/?route=notification/mark_read&id=' + btn.dataset.id)
+          .then(() => { loadNotifications(); updateUnreadCount(); });
+      });
+    });
+  }
+
+  function escapeHtml(s) {
+    return (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function escapeAttr(s) {
+    return (s || '').replace(/"/g,'&quot;');
+  }
+
+  async function loadNotifications() {
+    const res = await fetch('/IMDBSE2/public/?route=notification/json_latest');
+    const data = await res.json();
+    renderNotifications(data);
+  }
+
+  async function updateUnreadCount() {
+    const res = await fetch('/IMDBSE2/public/?route=notification/json_unread_count');
+    const json = await res.json();
+
+    const badge = document.getElementById('notif-badge');
+    if (!badge) return;
+
+    if (json.count > 0) {
+      badge.classList.remove('d-none');
+      badge.innerText = json.count;
+    } else {
+      badge.classList.add('d-none');
+    }
+  }
+
+  document.getElementById('navNotifDropdown')
+    ?.addEventListener('show.bs.dropdown', loadNotifications);
+
+  document.getElementById('mark-all-read')
+    ?.addEventListener('click', async () => {
+      await fetch('/IMDBSE2/public/?route=notification/mark_all_read', { method: 'POST' });
+      await loadNotifications();
+      await updateUnreadCount();
+    });
+
+  updateUnreadCount();
+
+  // AUTO-REFRESH EVERY 20 SECONDS
+  setInterval(() => {
+    loadNotifications();
+    updateUnreadCount();
+  }, 20000);
+
+  // Handle nested dropdown for Medications submenu
+  const medicationDropdown = document.querySelector('.dropdown-submenu .dropdown-toggle');
+  if (medicationDropdown) {
+    medicationDropdown.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const submenu = this.nextElementSibling;
+      if (submenu) {
+        submenu.classList.toggle('show');
+      }
+    });
+  }
+});
+</script>
